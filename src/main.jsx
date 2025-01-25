@@ -6,6 +6,9 @@ import './index.css'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     {/* <App /> */}
-    <h className="text-red-500">Hello I am Ashraful Islam.</h>
+    <>
+      <h1 className='font-primary text-2xl text-red-500'>Hello I am RUNNING SERVER.</h1>
+      <h1 className='font-secondary text-2xl text-green-500'>Hello, I am Ashraful Islam.</h1>
+    </>
   </StrictMode>,
 )
