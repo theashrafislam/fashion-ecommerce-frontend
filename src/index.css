@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-    --font-primary: Rufina, serif;
-    --font-secondary: Roboto, sans-serif;
+    --font-primary: Montserrat, sans-serif;
+    --font-secondary: Poppins, sans-serif;
 }
