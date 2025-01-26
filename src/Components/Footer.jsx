@@ -18,33 +18,33 @@ const Footer = () => {
                     {/* information  */}
                     <div className='w-[20%] pl-5'>
                         <h4 className='text-xl font-primary text-[#2E2E2E] mb-7'>Information</h4>
-                        <div className='flex flex-col gap-2 text-sm'>
-                            <a href="#" className='hover:text-red-500'>About Us</a>
-                            <a href="#" className='hover:text-red-500'>Delivery Information</a>
-                            <a href="#" className='hover:text-red-500'>Privacy Policy</a>
-                            <a href="#" className='hover:text-red-500'>Terms & Conditions</a>
-                            <a href="#" className='hover:text-red-500'>Customer Service</a>
-                            <a href="#" className='hover:text-red-500'>Return Policy</a>
+                        <div className='flex flex-col gap-2 text-sm text-[#666666]'>
+                            <a href="#" className='hover:text-red-500 hover:translate-x-1 transition duration-300'>About Us</a>
+                            <a href="#" className='hover:text-red-500 hover:translate-x-1 transition duration-300'>Delivery Information</a>
+                            <a href="#" className='hover:text-red-500 hover:translate-x-1 transition duration-300'>Privacy Policy</a>
+                            <a href="#" className='hover:text-red-500 hover:translate-x-1 transition duration-300'>Terms & Conditions</a>
+                            <a href="#" className='hover:text-red-500 hover:translate-x-1 transition duration-300'>Customer Service</a>
+                            <a href="#" className='hover:text-red-500 hover:translate-x-1 transition duration-300'>Return Policy</a>
                         </div>
                     </div>
                     {/* my account  */}
                     <div className='w-[20%] pl-5'>
                         <h4 className='text-xl text-[#2E2E2E] mb-7 font-primary'>My Account</h4>
-                        <div className='flex flex-col gap-2 text-sm'>
-                            <a href="#" className='hover:text-red-500'>My Account</a>
-                            <a href="#" className='hover:text-red-500'>Wishlist</a>
-                            <a href="#" className='hover:text-red-500'>Newsletter</a>
-                            <a href="#" className='hover:text-red-500'>Help Center</a>
-                            <a href="#" className='hover:text-red-500'>Conditin</a>
-                            <a href="#" className='hover:text-red-500'>Term Of Use</a>
+                        <div className='flex flex-col gap-2 text-sm text-[#666666]'>
+                            <a href="#" className='hover:text-red-500 hover:translate-x-1 transition duration-300'>My Account</a>
+                            <a href="#" className='hover:text-red-500 hover:translate-x-1 transition duration-300'>Wishlist</a>
+                            <a href="#" className='hover:text-red-500 hover:translate-x-1 transition duration-300'>Newsletter</a>
+                            <a href="#" className='hover:text-red-500 hover:translate-x-1 transition duration-300'>Help Center</a>
+                            <a href="#" className='hover:text-red-500 hover:translate-x-1 transition duration-300'>Conditin</a>
+                            <a href="#" className='hover:text-red-500 hover:translate-x-1 transition duration-300'>Term Of Use</a>
                         </div>
                     </div>
                     {/* Newsletter */}
                     <div className='w-[30%]'>
                         <h4 className='text-xl text-[#2E2E2E] mb-7 font-primary'>Newsletter</h4>
                         <p className='mb-4 font-secondary text-sm text-[#535353]'>Get E-mail updates about our latest shop and special offers.</p>
-                        <input type="email" name="" id="" placeholder='Enter you email here.' className='border-b-2 w-full mb-5 p-2 text-base focus:outline-none focus:border-b-red-500' /> <br />
-                        <button className='text-white font-bold py-2 px-6 rounded-lg bg-red-500'>Subscribe</button>
+                        <input type="email" name="" id="" placeholder='Enter you email here.' className='border-b-1 w-full mb-5 p-2 text-base focus:outline-none focus:border-b-red-500 text-[#666666]' /> <br />
+                        <button className='text-white font-bold py-2 px-8 hover:bg-black rounded-md bg-red-500'>Subscribe</button>
                     </div>
                 </div>
             </div>
