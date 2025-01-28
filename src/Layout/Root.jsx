@@ -5,8 +5,8 @@ import Navbar from '../Components/Navbar';
 
 const Root = () => {
     return (
-        <section className='flex flex-col min-h-screen'>
-            <header>
+        <section className='flex flex-col min-h-screen scroll-smooth'>
+            <header className='sticky top-0 z-50 bg-white shadow-lg'>
                 <Navbar />
             </header>
             <main className='flex-grow'>
