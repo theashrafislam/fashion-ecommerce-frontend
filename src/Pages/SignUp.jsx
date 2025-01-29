@@ -1,21 +1,42 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import useAuth from '../Hooks/useAuth';
 
 const SignUp = () => {
   const [imageUrl, setImageUrl] = useState(null);
+  const { createUserEmailPassword } = useAuth();
 
 
-
-  const handleFileChange = (event) => {
+  const handleFileChange = async (event) => {
     const file = event.target.files[0];
+
     if (file) {
       if (file.size > 32 * 1024 * 1024) {
-        alert('File size exceeds 32 MB limit.');
+        alert("File size exceeds 32 MB limit.");
         return;
       }
-      const url = URL.createObjectURL(file);
-      setImageUrl(url);
+
+      const formData = new FormData();
+      formData.append("image", file);
+
+      try {
+        const res = await axios.post(
+          `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMAGE_API_KEY}`,
+          formData,
+          {
+            headers: {
+              "content-type": "multipart/form-data",
+            },
+          }
+        );
+
+        const imageUrl = res.data.data.url;
+        setImageUrl(imageUrl);
+      } catch (error) {
+        console.error("Image upload failed:", error);
+      }
     }
   };
 
@@ -28,8 +49,21 @@ const SignUp = () => {
   } = useForm()
 
   const onSubmit = (data) => {
+    data.image = imageUrl
     console.log("Form Data:", data);
-    console.log("Image URL:", imageUrl);
+    createUserEmailPassword(data.email, data.password)
+      .then(() => {
+        updateProfileInformation(data.name, data.image)
+          .then(result => {
+            console.log(result);
+          })
+          .catch(error => {
+            console.log(error);
+          })
+      })
+      .catch(error => {
+        console.log(error);
+      })
   }
 
   return (
