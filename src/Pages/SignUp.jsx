@@ -1,12 +1,15 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../Hooks/useAuth';
+import toast from 'react-hot-toast';
+import LoadingSpinner from '../Components/LoadingSpinner';
 
 const SignUp = () => {
   const [imageUrl, setImageUrl] = useState(null);
-  const { createUserEmailPassword, updateProfileInformation, userSignOut } = useAuth();
+  const navigate = useNavigate();
+  const { createUserEmailPassword, updateProfileInformation, userSignOut, loading } = useAuth();
 
 
   const handleFileChange = async (event) => {
@@ -57,18 +60,28 @@ const SignUp = () => {
           .then(() => {
             userSignOut()
               .then(() => {
-                alert('sign out done')
+                toast.success('Welcome! Your account is ready.')
+                navigate('/sign-in')
               })
               .catch(error => {
                 alert(error.message)
               })
           })
           .catch(error => {
-            console.log(error);
+            // console.log(error);
           })
       })
       .catch(error => {
-        console.log(error);
+        let errorMessage = "An error occurred. Please try again.";
+        if (error.code === "auth/email-already-in-use") {
+          errorMessage = "This email is already in use. Please use a different email.";
+        } else if (error.code === "auth/weak-password") {
+          errorMessage = "Password should be at least 6 characters.";
+        } else if (error.code === "auth/invalid-email") {
+          errorMessage = "Invalid email address.";
+        }
+        toast.error(errorMessage);
+        // console.log(error);
       })
   }
 
@@ -145,10 +158,12 @@ const SignUp = () => {
           {/* Sign Up Button */}
           <div className='flex flex-col gap-4 mt-6'>
             <button
+              disabled={loading}
               type="submit"
               className='w-full bg-black text-white text-base font-semibold py-3 px-6 rounded-lg hover:bg-red-600 transition duration-300'
             >
-              Sign Up
+              {/* Sign Up */}
+              {loading ? <LoadingSpinner /> : 'Sign up'}
             </button>
 
             {/* Link to Login Page */}

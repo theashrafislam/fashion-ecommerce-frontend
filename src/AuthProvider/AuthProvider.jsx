@@ -2,35 +2,32 @@ import React, { createContext, useEffect, useState } from 'react';
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signOut, updateProfile } from "firebase/auth";
 import { app } from '../Firebase/firebase.config';
 
-
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
-
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
-
-    //create user using email and password
-    const createUserEmailPassword = (email, password) => {
+    const createUserEmailPassword = async (email, password) => {
         setLoading(true);
-        return createUserWithEmailAndPassword(auth, email, password);
+        return createUserWithEmailAndPassword(auth, email, password)
+            .finally(() => setLoading(false));
     };
 
-    //update profile function
-    const updateProfileInformation = (displayName, photoUrl) => {
+    const updateProfileInformation = async (displayName, photoUrl) => {
         setLoading(true);
         return updateProfile(auth.currentUser, {
-            displayName: displayName, photoURL: photoUrl
-        })
+            displayName: displayName,
+            photoURL: photoUrl
+        }).finally(() => setLoading(false));
     };
 
-    //sign out function
-    const userSignOut = () => {
+    const userSignOut = async () => {
+        setLoading(true);
         return signOut(auth)
-    }
-
+            .finally(() => setLoading(false));
+    };
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -38,18 +35,17 @@ const AuthProvider = ({ children }) => {
             setLoading(false);
         });
         return () => {
-            unSubscribe()
-        }
-    }, [])
-
-
+            unSubscribe();
+        };
+    }, []);
 
     const authInfo = {
         createUserEmailPassword,
         updateProfileInformation,
+        userSignOut,
         user,
-        userSignOut
-    }
+        loading
+    };
 
     return (
         <AuthContext.Provider value={authInfo}>
