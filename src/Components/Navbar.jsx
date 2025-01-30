@@ -27,8 +27,12 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { IoMdHome } from 'react-icons/io';
 import LgMenuOptions from './LgMenuOptions';
+import useAuth from '../Hooks/useAuth';
 
 const Navbar = () => {
+
+    const { user } = useAuth();
+    console.log(user);
 
     const [state, setState] = React.useState({
         top: false,
@@ -56,14 +60,14 @@ const Navbar = () => {
 
                 <div className='p-7'>
                     <Link href='/' underline="none"><h1 className='text-[#8C8C8C] font-bold text-xl lg:text-2xl cursor-pointer text-center'>FashionEra</h1></Link>
-                    <Divider className='py-2'/>
+                    <Divider className='py-2' />
                     <div className='flex flex-col gap-3 mt-4'>
-                        <Link href="/" underline='none' color='none' className='flex items-center gap-2 ' ><AiFillHome className='text-xl'/><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>Home</span></Link>
-                        <Link href="/hello" underline='none' color='none' className='flex items-center gap-2 ' ><FaShoppingCart className='text-xl'/><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>Shop</span></Link>
-                        <Link href="/hello" underline='none' color='none' className='flex items-center gap-2 ' ><FaBlog className='text-xl'/><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>Blog</span></Link>
-                        <Link href="/hello" underline='none' color='none' className='flex items-center gap-2 ' ><IoMdInformationCircleOutline className='text-xl'/><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>About</span></Link>
-                        <Link href="/contact" underline='none' color='none' className='flex items-center gap-2 ' ><MdContactMail className='text-xl'/><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>Contact</span></Link>
-                        <Link href="/sign-in" underline='none' color='none' className='flex items-center gap-2 ' ><FiLogIn className='text-xl'/><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>Login</span></Link>
+                        <Link href="/" underline='none' color='none' className='flex items-center gap-2 ' ><AiFillHome className='text-xl' /><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>Home</span></Link>
+                        <Link href="/hello" underline='none' color='none' className='flex items-center gap-2 ' ><FaShoppingCart className='text-xl' /><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>Shop</span></Link>
+                        <Link href="/hello" underline='none' color='none' className='flex items-center gap-2 ' ><FaBlog className='text-xl' /><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>Blog</span></Link>
+                        <Link href="/hello" underline='none' color='none' className='flex items-center gap-2 ' ><IoMdInformationCircleOutline className='text-xl' /><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>About</span></Link>
+                        <Link href="/contact" underline='none' color='none' className='flex items-center gap-2 ' ><MdContactMail className='text-xl' /><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>Contact</span></Link>
+                        <Link href="/sign-in" underline='none' color='none' className='flex items-center gap-2 ' ><FiLogIn className='text-xl' /><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>Login</span></Link>
                     </div>
                     {/* <Divider className='py-2'/> */}
                 </div>
@@ -82,7 +86,7 @@ const Navbar = () => {
             </div>
 
             {/* menu section  */}
-                <LgMenuOptions />
+            <LgMenuOptions />
 
             {/* Icons section  */}
             <div>

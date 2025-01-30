@@ -6,7 +6,7 @@ import useAuth from '../Hooks/useAuth';
 
 const SignUp = () => {
   const [imageUrl, setImageUrl] = useState(null);
-  const { createUserEmailPassword } = useAuth();
+  const { createUserEmailPassword, updateProfileInformation, userSignOut } = useAuth();
 
 
   const handleFileChange = async (event) => {
@@ -54,8 +54,14 @@ const SignUp = () => {
     createUserEmailPassword(data.email, data.password)
       .then(() => {
         updateProfileInformation(data.name, data.image)
-          .then(result => {
-            console.log(result);
+          .then(() => {
+            userSignOut()
+              .then(() => {
+                alert('sign out done')
+              })
+              .catch(error => {
+                alert(error.message)
+              })
           })
           .catch(error => {
             console.log(error);
