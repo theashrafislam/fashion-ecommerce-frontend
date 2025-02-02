@@ -6,6 +6,7 @@ import SignIn from "../Pages/SignIn";
 import SignUp from "../Pages/SignUp";
 import About from "../Pages/About";
 import Contact from "../Pages/Contact";
+import Profile from "../Pages/Profile";
 
 let router = createBrowserRouter([
     {
@@ -32,6 +33,10 @@ let router = createBrowserRouter([
             {
                 path: '/contact',
                 element: <Contact />
+            },
+            {
+                path: '/in/:email',
+                element: <Profile />
             }
         ]
     }

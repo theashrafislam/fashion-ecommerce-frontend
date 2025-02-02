@@ -1,12 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 import useAuth from '../Hooks/useAuth';
+import toast from 'react-hot-toast';
+import GoogleLoginButton from '../Components/GoogleLoginButton';
 
 
 const SignIn = () => {
 
-  const { createUserEmailPassword } = useAuth();
+  const { signInEmailPassword } = useAuth();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -16,14 +19,16 @@ const SignIn = () => {
   } = useForm()
 
   const onSubmit = (data) => {
-    createUserEmailPassword(data?.email, data?.password)
+    signInEmailPassword(data?.email, data?.password)
       .then(result => {
-        console.log(result);
+        navigate('/');
+        toast.success("Login successful! Welcome back! 🎉")
       })
       .catch(error => {
         console.log(error);
       })
   }
+
 
   return (
     <section className='font-primary min-h-screen flex items-center justify-center bg-gradient-to-r from-[#F9F9F9] to-[#E8E8E8]'>
@@ -74,6 +79,10 @@ const SignIn = () => {
             </Link>
           </div>
         </form>
+        {/* google login  */}
+        <div className='my-2'>
+              <GoogleLoginButton />
+        </div>
       </div>
     </section>
   );

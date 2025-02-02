@@ -1,29 +1,13 @@
 import React from 'react';
 import ActivePage from '../Components/ActivePage';
 
-const Home = () => {
+const Profile = () => {
     return (
         <div>
-            hello i am home
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <h1 className='mt-40'>hello</h1>  
             <ActivePage route={'My Account'} mainRoute={'Home'}/>
+            Hello ia m profile
         </div>
     );
 };
 
-export default Home;
+export default Profile;

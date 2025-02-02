@@ -28,11 +28,25 @@ import MailIcon from '@mui/icons-material/Mail';
 import { IoMdHome } from 'react-icons/io';
 import LgMenuOptions from './LgMenuOptions';
 import useAuth from '../Hooks/useAuth';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import ProfileIcon from './Icons/ProfileIcon';
 
 const Navbar = () => {
+    const nagivate = useNavigate();
+    const { user, loading, userSignOut } = useAuth();
+    // console.log(user);
 
-    const { user } = useAuth();
-    console.log(user);
+    const handleLogOut = () => {
+        userSignOut()
+            .then(() => {
+                toast.success("Logged out successfully! See you again! 👋");
+                nagivate('/sign-in')
+            })
+            .catch(error => {
+                toast.error(error)
+            })
+    }
 
     const [state, setState] = React.useState({
         top: false,
@@ -67,7 +81,7 @@ const Navbar = () => {
                         <Link href="/hello" underline='none' color='none' className='flex items-center gap-2 ' ><FaBlog className='text-xl' /><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>Blog</span></Link>
                         <Link href="/hello" underline='none' color='none' className='flex items-center gap-2 ' ><IoMdInformationCircleOutline className='text-xl' /><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>About</span></Link>
                         <Link href="/contact" underline='none' color='none' className='flex items-center gap-2 ' ><MdContactMail className='text-xl' /><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>Contact</span></Link>
-                        <Link href="/sign-in" underline='none' color='none' className='flex items-center gap-2 ' ><FiLogIn className='text-xl' /><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>Login</span></Link>
+                        {user ? <Link onClick={handleLogOut} underline='none' color='none' className='flex items-center gap-2 ' ><FiLogIn className='text-xl' /><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>Logout</span></Link> : <Link href="/sign-in" underline='none' color='none' className='flex items-center gap-2 ' ><FiLogIn className='text-xl' /><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>Login</span></Link>}
                     </div>
                     {/* <Divider className='py-2'/> */}
                 </div>
@@ -92,7 +106,7 @@ const Navbar = () => {
             <div>
                 <ul className='flex items-center justify-end gap-3 lg:gap-6'>
                     {/* <li className='py-8 hover:text-red-500'><RiSearchLine className='text-xl lg:text-2xl ' /></li> */}
-                    <li className='py-8 hover:text-red-500'><CgProfile className='text-xl lg:text-2xl' /></li>
+                    <ProfileIcon />
                     <li className='py-8 hover:text-red-500'><GoHeart className='text-xl lg:text-2xl' /></li>
                     <li className='py-8 hover:text-red-500'><BsCart className='text-xl lg:text-2xl' /></li>
                     {/* <li  onClick={toggleDrawer('right', true)} className='py-8 hover:text-red-500'><IoMenu className='text-3xl lg:text-2xl lg:hidden' /></li> */}
