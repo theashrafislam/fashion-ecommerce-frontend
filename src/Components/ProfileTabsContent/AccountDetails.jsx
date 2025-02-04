@@ -3,7 +3,7 @@ import React from 'react';
 const AccountDetails = () => {
     return (
         <div>
-            <h1 className="font-primary text-2xl font-semibold pb-3 mb-3 border-b-2 border-dotted border-[#E8E8E8]">Account Details</h1>
+            <h1 className="font-primary text-2xl font-medium pb-3 mb-3 border-b-2 border-dotted border-[#E8E8E8]">Account Details</h1>
             <div className="text-[#666666] font-secondary">
                 {/* input feilds  */}
                 <div className="w-full">
