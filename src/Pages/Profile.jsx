@@ -8,6 +8,8 @@ import Address from '../Components/ProfileTabsContent/Address';
 import PaymentMethod from '../Components/ProfileTabsContent/PaymentMethod';
 import Download from '../Components/ProfileTabsContent/Download';
 import Orders from '../Components/ProfileTabsContent/Orders';
+import Dashboard from '../Components/ProfileTabsContent/Dashboard';
+import { useParams } from 'react-router-dom';
 
 const tabs = [
     { name: 'Dashboard', icon: <FaTachometerAlt /> },
@@ -20,8 +22,10 @@ const tabs = [
 ];
 
 const Profile = () => {
+    const { email } = useParams();
     const [activeTab, setActiveTab] = useState('Dashboard');
     const { user, userSignOut } = useAuth();
+    console.log(user);
 
 
     const handleLogout = () => {
@@ -39,11 +43,7 @@ const Profile = () => {
             case 'Dashboard':
                 return (
                     <>
-                        <h1 className="font-primary text-2xl font-semibold pb-3 mb-3 border-b-2 border-dotted border-[#E8E8E8]">Dashboard</h1>
-                        <p className="text-[#666666] font-secondary">
-                            Hello, <span className="text-red-500 font-bold">Alex Aya</span> (If Not Aya! <span className="cursor-pointer text-blue-500">Logout</span>)<br />
-                            From your account dashboard, you can easily check & view your recent orders, manage your shipping and billing addresses, and edit your password and account details.
-                        </p>
+                        <Dashboard />
                     </>
                 );
             case 'Orders':

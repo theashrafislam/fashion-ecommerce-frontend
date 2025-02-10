@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 import useAuth from '../Hooks/useAuth';
 import toast from 'react-hot-toast';
@@ -7,7 +7,7 @@ import GoogleLoginButton from '../Components/GoogleLoginButton';
 
 
 const SignIn = () => {
-
+  const location = useLocation();
   const { signInEmailPassword } = useAuth();
   const navigate = useNavigate();
 
@@ -20,8 +20,8 @@ const SignIn = () => {
 
   const onSubmit = (data) => {
     signInEmailPassword(data?.email, data?.password)
-      .then(result => {
-        navigate('/');
+      .then(() => {
+        navigate(location?.state?.pathname || '/');
         toast.success("Login successful! Welcome back! 🎉")
       })
       .catch(error => {

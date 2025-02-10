@@ -1,10 +1,30 @@
 import React from 'react';
+import { CgProfile } from "react-icons/cg";
+import useAuth from '../../Hooks/useAuth';
 
 const AccountDetails = () => {
+    const {user, loading} = useAuth();
+    console.log(user);
     return (
         <div>
             <h1 className="font-primary text-2xl font-medium pb-3 mb-3 border-b-2 border-dotted border-[#E8E8E8]">Account Details</h1>
             <div className="text-[#666666] font-secondary">
+                {/* profile photo  */}
+                <div className='flex justify-center items-center py-6'>
+                    <div className="relative w-28 h-28">
+                        <img
+                            // src={photo || "/default-avatar.png"}
+                            alt="Profile"
+                            className="w-full h-full object-cover rounded-full border-2 border-gray-300"
+                        />
+                        <label
+                            htmlFor="profilePhoto"
+                            className="absolute bottom-1 right-1 bg-gray-800 text-white p-1 rounded-full cursor-pointer hover:bg-red-500 transition"
+                        >
+                            <CgProfile className='text-2xl'/>
+                        </label>
+                    </div>
+                </div>
                 {/* input feilds  */}
                 <div className="w-full">
                     {/* First Name and Last Name */}

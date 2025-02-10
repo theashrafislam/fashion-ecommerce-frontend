@@ -7,6 +7,7 @@ import SignUp from "../Pages/SignUp";
 import About from "../Pages/About";
 import Contact from "../Pages/Contact";
 import Profile from "../Pages/Profile";
+import PrivateRoute from "./PrivateRoute";
 
 let router = createBrowserRouter([
     {
@@ -36,7 +37,7 @@ let router = createBrowserRouter([
             },
             {
                 path: '/in/:email',
-                element: <Profile />
+                element: <PrivateRoute><Profile /></PrivateRoute>
             }
         ]
     }

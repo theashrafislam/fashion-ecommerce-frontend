@@ -5,11 +5,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../Hooks/useAuth';
 import toast from 'react-hot-toast';
 import LoadingSpinner from '../Components/LoadingSpinner';
+import useAxiosPublic from '../Hooks/useAxiosPublic';
 
 const SignUp = () => {
+  const axiosPublic = useAxiosPublic();
   const [imageUrl, setImageUrl] = useState(null);
   const navigate = useNavigate();
   const { createUserEmailPassword, updateProfileInformation, userSignOut, loading } = useAuth();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
 
   const handleFileChange = async (event) => {
@@ -51,39 +54,45 @@ const SignUp = () => {
     formState: { errors },
   } = useForm()
 
-  const onSubmit = (data) => {
-    data.image = imageUrl
-    console.log("Form Data:", data);
-    createUserEmailPassword(data.email, data.password)
-      .then(() => {
-        updateProfileInformation(data.name, data.image)
-          .then(() => {
-            userSignOut()
-              .then(() => {
-                toast.success('Welcome! Your account is ready.')
-                navigate('/sign-in')
-              })
-              .catch(error => {
-                alert(error.message)
-              })
-          })
-          .catch(error => {
-            // console.log(error);
-          })
-      })
-      .catch(error => {
-        let errorMessage = "An error occurred. Please try again.";
-        if (error.code === "auth/email-already-in-use") {
-          errorMessage = "This email is already in use. Please use a different email.";
-        } else if (error.code === "auth/weak-password") {
-          errorMessage = "Password should be at least 6 characters.";
-        } else if (error.code === "auth/invalid-email") {
-          errorMessage = "Invalid email address.";
-        }
-        toast.error(errorMessage);
-        // console.log(error);
-      })
-  }
+  const onSubmit = async (data) => {
+    if (!imageUrl) {
+      toast.error("Please wait! Image is still uploading.");
+      return;
+    }
+    setIsSubmitting(true);
+    try {
+      data.image = imageUrl;
+      const userInfo = {
+        name: data?.name,
+        email: data?.email,
+        password: data?.password,
+        image: data?.image
+      };
+
+      await createUserEmailPassword(data.email, data.password);
+      await updateProfileInformation(data.name, data.image);
+      await userSignOut();
+
+      const response = await axiosPublic.post('/sign-up-user-info', userInfo);
+
+      if (response?.data?.data?.insertedId) {
+        toast.success('Welcome! Your account is ready.');
+        navigate('/sign-in');
+      }
+    } catch (error) {
+      let errorMessage = "An error occurred. Please try again.";
+      if (error.code === "auth/email-already-in-use") {
+        errorMessage = "This email is already in use. Please use a different email.";
+      } else if (error.code === "auth/weak-password") {
+        errorMessage = "Password should be at least 6 characters.";
+      } else if (error.code === "auth/invalid-email") {
+        errorMessage = "Invalid email address.";
+      }
+      toast.error(errorMessage);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section className='font-primary min-h-screen flex items-center justify-center bg-gradient-to-r from-[#F9F9F9] to-[#E8E8E8]'>
@@ -158,12 +167,11 @@ const SignUp = () => {
           {/* Sign Up Button */}
           <div className='flex flex-col gap-4 mt-6'>
             <button
-              disabled={loading}
+              disabled={loading || isSubmitting}
               type="submit"
               className='w-full bg-black text-white text-base font-semibold py-3 px-6 rounded-lg hover:bg-red-600 transition duration-300'
             >
-              {/* Sign Up */}
-              {loading ? <LoadingSpinner /> : 'Sign up'}
+              {isSubmitting ? <LoadingSpinner /> : 'Sign up'}
             </button>
 
             {/* Link to Login Page */}

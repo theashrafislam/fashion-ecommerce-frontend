@@ -13,8 +13,8 @@ const Footer = () => {
                     <div className='md:w-[30%]'>
                         <h4 className='mb-7 font-primary text-xl text-[#2E2E2E]'>Contact Us</h4>
                         <p className='mb-4 font-secondary text-sm text-[#535353]'>We'd love to hear from you! Feel free to reach out through any of the following methods.</p>
-                        <p className='mb-1 font-secondary text-sm text-[#535353]'><strong className='text-[#666666]'>Address:</strong> 123 Main Street, Anytown, CA 12345, USA.</p>
-                        <p className='mb-1 font-secondary text-sm text-[#535353]'><strong className='text-[#666666]'>Call to:</strong> (012) 800 456 789-987</p>
+                        <p className='mb-1 font-secondary text-sm text-[#535353]'><strong className='text-[#666666]'>Address:</strong> Mirpur, Dhaka, Bangladesh.</p>
+                        <p className='mb-1 font-secondary text-sm text-[#535353]'><strong className='text-[#666666]'>Call to:</strong> +880 1639568198</p>
                         <p className='font-secondary text-sm text-[#535353]'><strong className='text-[#666666]'>Mail to:</strong> theashrafislam@gmail.com</p>
                         {/* icons */}
                         <div className='flex items-center gap-3 mt-3'>
