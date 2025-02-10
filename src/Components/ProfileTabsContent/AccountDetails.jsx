@@ -3,18 +3,24 @@ import { CgProfile } from "react-icons/cg";
 import useAuth from '../../Hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import LoadingSpinner from '../LoadingSpinner';
 
 const AccountDetails = () => {
     const { user, loading } = useAuth();
+    const axiosSecure = useAxiosSecure();
 
     const { data: accountInfo, isLoading, isError } = useQuery({
-        queryKey: ['AccountInfo'],
+        queryKey: ['accountInfo'],
         queryFn: async () => {
-            const response = await useAxiosSecure.get(`/user-info?email=${user?.email}`);
-            return response?.data;
+            const response = axiosSecure.get(`/user-info?email=${user?.email}`);
+            return response;
         }
     })
     console.log(accountInfo);
+    console.log(isError);
+    if (isLoading) {
+        return <LoadingSpinner />
+    }
     return (
         <div>
             <h1 className="font-primary text-2xl font-medium pb-3 mb-3 border-b-2 border-dotted border-[#E8E8E8]">Account Details</h1>
@@ -23,8 +29,8 @@ const AccountDetails = () => {
                 <div className='flex justify-center items-center py-6'>
                     <div className="relative w-28 h-28">
                         <img
-                            // src={photo || "/default-avatar.png"}
-                            alt="Profile"
+                            src={accountInfo?.data?.data?.image || "/default-avatar.png"}
+                            alt={accountInfo?.data?.data?.name}
                             className="w-full h-full object-cover rounded-full border-2 border-gray-300"
                         />
                         <label
@@ -44,6 +50,7 @@ const AccountDetails = () => {
                                 First Name
                             </label>
                             <input
+                                defaultValue={accountInfo?.data?.data?.name.split(' ')[0]}
                                 type="text"
                                 id="firstName"
                                 placeholder="First Name"
@@ -55,6 +62,7 @@ const AccountDetails = () => {
                                 Last Name
                             </label>
                             <input
+                                defaultValue={accountInfo?.data?.data?.name.split(" ").slice(1).join(" ")}
                                 type="text"
                                 id="lastName"
                                 placeholder="Last Name"
@@ -68,6 +76,7 @@ const AccountDetails = () => {
                             Display Name
                         </label>
                         <input
+                            defaultValue={accountInfo?.data?.data?.name}
                             type="text"
                             id="displayName"
                             placeholder="Display Name"
@@ -80,6 +89,7 @@ const AccountDetails = () => {
                             Email Address
                         </label>
                         <input
+                            defaultValue={accountInfo?.data?.data?.email}
                             type="email"
                             id="emailAddress"
                             placeholder="Email Address"

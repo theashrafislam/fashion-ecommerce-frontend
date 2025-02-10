@@ -1,31 +1,35 @@
 import axios from 'axios';
-import React, { useEffect } from 'react';
-import useAuth from './useAuth';
+import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../AuthProvider/AuthProvider';
+import useAuth from './useAuth';
 
 const axiosSecure = axios.create({
     baseURL: 'http://localhost:3000',
     withCredentials: true
 });
 
-const useAxiosSecure = async () => {
-    const { userSignOut } = useAuth();
-    const nagivate = useNavigate();
+const useAxiosSecure = () => {
+    const {userSignOut} = useAuth();
+    // const {userSignOut } = useContext(AuthContext);
+    // const navigate = useNavigate();
 
     useEffect(() => {
-        axios.interceptors.response.use(response => {
+
+        axiosSecure.interceptors.response.use(function (response) {
             return response;
-        }, (error) => {
-            if (error?.response.status === 401 || error?.response?.status === 403) {
+        }, function (error) {
+            if(error?.response?.status === 401 || error?.response?.status === 403){
                 userSignOut()
                     .then(() => {
-                        nagivate('/sign-in');
+                        navigate('/sign-in')
                     })
-                    .catch(() => {
+                    .catch(error => {
 
                     })
             }
         });
+
     }, [])
 
     return axiosSecure;

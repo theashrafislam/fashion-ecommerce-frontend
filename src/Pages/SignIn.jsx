@@ -15,6 +15,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
   const axiosSecure = useAxiosSecure();
+  console.log(location?.state?.pathname);
 
   const {
     register,
