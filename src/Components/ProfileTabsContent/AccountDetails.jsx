@@ -1,10 +1,20 @@
 import React from 'react';
 import { CgProfile } from "react-icons/cg";
 import useAuth from '../../Hooks/useAuth';
+import { useQuery } from '@tanstack/react-query';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const AccountDetails = () => {
-    const {user, loading} = useAuth();
-    console.log(user);
+    const { user, loading } = useAuth();
+
+    const { data: accountInfo, isLoading, isError } = useQuery({
+        queryKey: ['AccountInfo'],
+        queryFn: async () => {
+            const response = await useAxiosSecure.get(`/user-info?email=${user?.email}`);
+            return response?.data;
+        }
+    })
+    console.log(accountInfo);
     return (
         <div>
             <h1 className="font-primary text-2xl font-medium pb-3 mb-3 border-b-2 border-dotted border-[#E8E8E8]">Account Details</h1>
@@ -21,7 +31,7 @@ const AccountDetails = () => {
                             htmlFor="profilePhoto"
                             className="absolute bottom-1 right-1 bg-gray-800 text-white p-1 rounded-full cursor-pointer hover:bg-red-500 transition"
                         >
-                            <CgProfile className='text-2xl'/>
+                            <CgProfile className='text-2xl' />
                         </label>
                     </div>
                 </div>

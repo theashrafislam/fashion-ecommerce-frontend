@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 import useAuth from '../Hooks/useAuth';
 import toast from 'react-hot-toast';
 import GoogleLoginButton from '../Components/GoogleLoginButton';
+import LoadingSpinner from '../Components/LoadingSpinner';
+import useAxiosSecure from '../Hooks/useAxiosSecure';
 
 
 const SignIn = () => {
+
   const location = useLocation();
   const { signInEmailPassword } = useAuth();
   const navigate = useNavigate();
+  const [isLoading, setLoading] = useState(false);
+  const axiosSecure = useAxiosSecure();
 
   const {
     register,
@@ -19,10 +24,15 @@ const SignIn = () => {
   } = useForm()
 
   const onSubmit = (data) => {
+    setLoading(true)
     signInEmailPassword(data?.email, data?.password)
-      .then(() => {
-        navigate(location?.state?.pathname || '/');
-        toast.success("Login successful! Welcome back! 🎉")
+      .then(async () => {
+        // const response = await axiosSecure.get(`/jwt?email=${data?.email}`);
+        // if (response?.data?.status === 200) {
+          navigate(location?.state?.pathname || '/');
+          toast.success("Login successful! Welcome back! 🎉");
+          setLoading(false);
+        // }
       })
       .catch(error => {
         console.log(error);
@@ -66,10 +76,11 @@ const SignIn = () => {
           </div>
           <div className='flex flex-col gap-4 mt-6'>
             <button
+              disabled={isLoading}
               type="submit"
               className='w-full bg-black text-white text-base font-semibold py-3 px-6 rounded-lg hover:bg-red-600 transition duration-300'
             >
-              Login
+              {isLoading ? <LoadingSpinner /> : 'Login'}
             </button>
             <Link
               to="/sign-up"
@@ -81,7 +92,7 @@ const SignIn = () => {
         </form>
         {/* google login  */}
         <div className='my-2'>
-              <GoogleLoginButton />
+          <GoogleLoginButton />
         </div>
       </div>
     </section>

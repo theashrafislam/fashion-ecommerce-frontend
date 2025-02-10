@@ -8,7 +8,7 @@ const axiosSecure = axios.create({
     withCredentials: true
 });
 
-const useAxiosSecure = () => {
+const useAxiosSecure = async () => {
     const { userSignOut } = useAuth();
     const nagivate = useNavigate();
 
