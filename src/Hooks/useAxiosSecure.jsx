@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import useAuth from './useAuth';
 
@@ -10,16 +10,15 @@ const axiosSecure = axios.create({
 });
 
 const useAxiosSecure = () => {
-    const {userSignOut} = useAuth();
-    // const {userSignOut } = useContext(AuthContext);
-    // const navigate = useNavigate();
+    const { userSignOut } = useAuth();
+    const navigate = useNavigate();
 
     useEffect(() => {
 
         axiosSecure.interceptors.response.use(function (response) {
             return response;
         }, function (error) {
-            if(error?.response?.status === 401 || error?.response?.status === 403){
+            if (error?.response?.status === 401 || error?.response?.status === 403) {
                 userSignOut()
                     .then(() => {
                         navigate('/sign-in')
@@ -27,6 +26,7 @@ const useAxiosSecure = () => {
                     .catch(error => {
 
                     })
+                console.log("Logout the user");
             }
         });
 

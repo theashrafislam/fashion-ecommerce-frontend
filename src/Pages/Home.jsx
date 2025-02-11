@@ -8,12 +8,12 @@ import useAxiosSecure from '../Hooks/useAxiosSecure';
 const Home = () => {
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
-    useEffect(() => {
-        axiosSecure.get('/get-all')
-            .then(res => {
-                console.log(res);
-            })
-    }, [user, axiosSecure])
+    // useEffect(() => {
+    //     axiosSecure.get('/get-all')
+    //         .then(res => {
+    //             console.log(res);
+    //         })
+    // }, [user, axiosSecure])
     return (
         <div>j
             hello i am home

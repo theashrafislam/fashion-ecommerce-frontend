@@ -3,6 +3,8 @@ import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWith
 import { app } from '../Firebase/firebase.config';
 import { GoogleAuthProvider } from "firebase/auth";
 import useAxiosSecure from '../Hooks/useAxiosSecure';
+import axios from 'axios';
+import useAxiosPublic from '../Hooks/useAxiosPublic';
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -11,7 +13,7 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
 
 
     const createUserEmailPassword = async (email, password) => {
@@ -47,15 +49,21 @@ const AuthProvider = ({ children }) => {
     };
 
     useEffect(() => {
-        const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
+        const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
             const email = currentUser?.email || user?.email;
-            if(currentUser){
-                const response = await axiosSecure.get(`/jwt?email=${email}`);
-                // console.log(response);
-            }else{
-                const response = await axiosSecure.get(`/token-remove`);
-                // console.log(response);
+            if (currentUser) {
+                // axios.get(`http://localhost:3000/jwt?email=${email}`, { withCredentials: true })
+                axiosPublic.get(`/jwt?email=${email}`)
+                    .then(res => {
+                        // console.log(res);
+                    })
+            } else {
+                // axios.get(`http://localhost:3000/token-remove`, { withCredentials: true })
+                axiosPublic.get(`/token-remove`)
+                    .then(res => {
+                        // console.log(res);
+                    })
             }
             setLoading(false);
         });

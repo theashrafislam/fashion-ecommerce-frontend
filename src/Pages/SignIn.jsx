@@ -15,7 +15,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
   const axiosSecure = useAxiosSecure();
-  console.log(location?.state?.pathname);
+  // console.log(location?.state?.pathname);
 
   const {
     register,
@@ -30,9 +30,9 @@ const SignIn = () => {
       .then(async () => {
         // const response = await axiosSecure.get(`/jwt?email=${data?.email}`);
         // if (response?.data?.status === 200) {
-          navigate(location?.state?.pathname || '/');
-          toast.success("Login successful! Welcome back! 🎉");
-          setLoading(false);
+        navigate(location?.state?.pathname || '/');
+        toast.success("Login successful! Welcome back! 🎉");
+        setLoading(false);
         // }
       })
       .catch(error => {
