@@ -57,9 +57,14 @@ const SignUp = () => {
   const onSubmit = async (data) => {
     if (!imageUrl) {
       toast.error("Please wait! Image is still uploading.");
+      setIsSubmitting(false);
       return;
     }
     setIsSubmitting(true);
+    if(data?.password.length < 6){
+      setIsSubmitting(false);
+      return toast.error('Password must be at least 6 characters long!')
+    }
     try {
       data.image = imageUrl;
       const userInfo = {

@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updatePassword, updateProfile } from "firebase/auth";
 import { app } from '../Firebase/firebase.config';
 import { GoogleAuthProvider } from "firebase/auth";
 import useAxiosSecure from '../Hooks/useAxiosSecure';
@@ -42,6 +42,13 @@ const AuthProvider = ({ children }) => {
             .finally(() => setLoading(false));
     }
 
+    const changePassword = async (newPassword) => {
+        setLoading(true);
+        const user = auth.currentUser;
+        return updatePassword(user, newPassword)
+            .finally(() => setLoading(false))
+    }
+
     const userSignOut = async () => {
         setLoading(true);
         return signOut(auth)
@@ -79,7 +86,8 @@ const AuthProvider = ({ children }) => {
         user,
         loading,
         signInEmailPassword,
-        signInWithGoogle
+        signInWithGoogle,
+        changePassword
     };
 
     return (

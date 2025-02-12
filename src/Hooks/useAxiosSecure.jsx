@@ -26,7 +26,7 @@ const useAxiosSecure = () => {
                     .catch(error => {
 
                     })
-                console.log("Logout the user");
+                // console.log("Logout the user");
             }
         });
 
