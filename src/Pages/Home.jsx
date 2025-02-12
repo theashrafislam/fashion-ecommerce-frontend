@@ -5,6 +5,7 @@ import useAxiosPublic from '../Hooks/useAxiosPublic';
 import axios from 'axios';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 import Carousel from '../Components/Home/Carousel';
+import PromotionalBanners from '../Components/Home/PromotionalBanners';
 
 const Home = () => {
     const axiosSecure = useAxiosSecure();
@@ -17,8 +18,10 @@ const Home = () => {
     // }, [user, axiosSecure])
     return (
         <div>
+            {/* Carousel section  */}
             <Carousel />
-            <ActivePage route={'My Account'} mainRoute={'Home'} />
+            {/* Promotional Banners */}
+            <PromotionalBanners />
         </div>
     );
 };
