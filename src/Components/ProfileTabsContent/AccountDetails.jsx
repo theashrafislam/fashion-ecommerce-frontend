@@ -17,7 +17,7 @@ const AccountDetails = () => {
             return response;
         }
     })
-    // console.log(accountInfo);
+
     const [name, setName] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -51,14 +51,11 @@ const AccountDetails = () => {
         }
 
         if (isNameChanged && isPassChanged) {
-            // console.log({ name, password: newPassword });
             console.log(accountInfo?.data?.data?._id);
             changePassword(newPassword)
                 .then(() => {
-                    // toast.success('Password changed successfully!')
                     axiosSecure.patch(`/update-user-info?id=${accountInfo?.data?.data?._id}`, { name, password: newPassword })
                         .then(res => {
-                            // console.log(res);
                             if (res.status === 200) {
                                 toast.success('Name and password changed successfully')
                             }
@@ -71,14 +68,11 @@ const AccountDetails = () => {
                     const errorCode = error?.code || error?.message || "unknown_error";
                     if (errorCode === 'auth/requires-recent-login') {
                         toast.error("Please re-login and try again.");
-                    }
-                    // console.log(error);
+                    };
                 })
         } else if (isNameChanged) {
-            // console.log({ name });
             axiosSecure.patch(`/update-user-info?id=${accountInfo?.data?.data?._id}`, { name })
                 .then(res => {
-                    // console.log(res);
                     if (res.status === 200) {
                         toast.success('Name changed successfully')
                     }
@@ -90,21 +84,27 @@ const AccountDetails = () => {
         } else if (isPassChanged) {
             changePassword(newPassword)
                 .then(() => {
-                    toast.success('Password changed successfully!')
+                    axiosSecure.patch(`/update-user-info?id=${accountInfo?.data?.data?._id}`, { password: newPassword })
+                        .then(res => {
+                            if (res.status === 200) {
+                                toast.success('Password changed successfully')
+                            }
+                        })
+                        .catch(error => {
+                            console.log(error);
+                            toast.error(error.message)
+                        })
                 })
                 .catch(error => {
                     const errorCode = error?.code || error?.message || "unknown_error";
                     if (errorCode === 'auth/requires-recent-login') {
                         toast.error("Please re-login and try again.");
                     }
-                    // console.log(error);
                 })
-            // console.log({ password: newPassword });
         }
     }
 
 
-    // console.log(isError);
     if (isLoading) {
         return <LoadingSpinner />
     }
