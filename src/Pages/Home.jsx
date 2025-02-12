@@ -4,6 +4,7 @@ import useAuth from '../Hooks/useAuth';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
 import axios from 'axios';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
+import Carousel from '../Components/Home/Carousel';
 
 const Home = () => {
     const axiosSecure = useAxiosSecure();
@@ -15,24 +16,8 @@ const Home = () => {
     //         })
     // }, [user, axiosSecure])
     return (
-        <div>j
-            hello i am home
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <h1 className='mt-40'>hello</h1>
+        <div>
+            <Carousel />
             <ActivePage route={'My Account'} mainRoute={'Home'} />
         </div>
     );

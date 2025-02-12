@@ -1,0 +1,29 @@
+.awssld {
+    --slider-height-percentage: 100%;
+    --slider-transition-duration: 600ms;
+    --organic-arrow-thickness: 4px;
+    --organic-arrow-height: 40px;
+    --organic-arrow-color: #000;
+    /* Change arrow color if needed */
+    --control-button-width: 10%;
+    --control-button-height: 100%;
+    --control-button-background: transparent;
+    --content-background-color: transparent;
+    --loader-bar-color: transparent;
+}
+
+.awssld__controls {
+    display: flex !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+}
+
+.awssld__controls button {
+    width: 50px !important;
+    height: 50px !important;
+    background: rgba(0, 0, 0, 0.3) !important;
+    border-radius: 50% !important;
+}
