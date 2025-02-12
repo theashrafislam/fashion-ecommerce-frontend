@@ -51,7 +51,26 @@ const AccountDetails = () => {
         }
 
         if (isNameChanged && isPassChanged) {
-            console.log({ name, password: newPassword });
+            // console.log({ name, password: newPassword });
+            console.log(accountInfo?.data?.data?._id);
+            changePassword(newPassword)
+                .then(() => {
+                    // toast.success('Password changed successfully!')
+                    axiosSecure.patch(`/update-user-info?id=${accountInfo?.data?.data?._id}`, { name, password: newPassword })
+                        .then(res => {
+                            // console.log(res);
+                            if(res.status === 200){
+                                toast.success('Name and password changed successfully')
+                            }
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        })
+                })
+                .catch(error => {
+                    toast.error(error.message)
+                    // console.log(error);
+                })
         } else if (isNameChanged) {
             console.log({ name });
         } else if (isPassChanged) {
@@ -61,9 +80,9 @@ const AccountDetails = () => {
                 })
                 .catch(error => {
                     toast.error(error.message)
-                    console.log(error);
+                    // console.log(error);
                 })
-            console.log({ password: newPassword });
+            // console.log({ password: newPassword });
         }
     }
 
