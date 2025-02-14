@@ -6,6 +6,8 @@ import axios from 'axios';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 import Carousel from '../Components/Home/Carousel';
 import PromotionalBanners from '../Components/Home/PromotionalBanners';
+import ServiceFeatures from '../Components/Home/ServiceFeatures';
+import CustomTabs from '../Components/Home/CustomTabs';
 
 const Home = () => {
     const axiosSecure = useAxiosSecure();
@@ -20,8 +22,15 @@ const Home = () => {
         <div>
             {/* Carousel section  */}
             <Carousel />
+
             {/* Promotional Banners */}
             <PromotionalBanners />
+
+            {/* Service Features */}
+            <ServiceFeatures />
+
+            {/* tabs items */}
+            <CustomTabs />
         </div>
     );
 };

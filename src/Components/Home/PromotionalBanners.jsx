@@ -23,14 +23,15 @@ const PromotionalBanners = () => {
     ];
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-20 max-w-7xl mx-auto font-primary">
+        <div className="mx-4 lg:mx-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-24 max-w-7xl mx-auto font-primary">
                 <div
-                    className="relative overflow-hidden group"
+                    className="relative overflow-hidden group "
                 >
                     {/* Image Section with Hover Zoom Effect */}
                     <div
                         className="w-full h-64 bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
-                        style={{ backgroundImage: `url('/banner-1.webp')` }}
+                        style={{ backgroundImage: `url('/bannar/banner-1.webp')` }}
                     ></div>
 
                     {/* Text Section - Correctly Positioned */}
@@ -48,7 +49,7 @@ const PromotionalBanners = () => {
                     {/* Image Section with Hover Zoom Effect */}
                     <div
                         className="w-full h-64 bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
-                        style={{ backgroundImage: `url('/banner-2.webp')` }}
+                        style={{ backgroundImage: `url('/bannar/banner-2.webp')` }}
                     ></div>
 
                     {/* Text Section - Correctly Positioned */}
@@ -66,7 +67,7 @@ const PromotionalBanners = () => {
                     {/* Image Section with Hover Zoom Effect */}
                     <div
                         className="w-full h-64 bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
-                        style={{ backgroundImage: `url('/banner-1.webp')` }}
+                        style={{ backgroundImage: `url('/bannar/banner-3.webp')` }}
                     ></div>
 
                     {/* Text Section - Correctly Positioned */}
@@ -78,6 +79,7 @@ const PromotionalBanners = () => {
                         </button>
                     </div>
                 </div>
+            </div>
         </div>
     );
 };
