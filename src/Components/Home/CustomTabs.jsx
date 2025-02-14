@@ -18,11 +18,27 @@ const CustomTabs = () => {
         <Box sx={{ width: '100%', typography: 'body1' }}>
             <TabContext value={value}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                    <TabList onChange={handleChange} aria-label="lab API tabs example">
-                        <Tab label="Item One" value="1" />
-                        <Tab label="Item Two" value="2" />
-                        <Tab label="Item Three" value="3" />
-                    </TabList>
+                    <div className='flex justify-center items-center'>
+                        <TabList onChange={handleChange} aria-label="lab API tabs example" TabIndicatorProps={{
+                            style: { backgroundColor: '#FF4444' }
+                        }} className='font-primary'>
+                            <Tab label="Item One" value="1" sx={{
+                                color: '#2E2E2E',
+                                fontWeight: 500,
+                                '&.Mui-selected': { color: '#ef4444' }
+                            }} />
+                            <Tab label="Item Two" value="2" sx={{
+                                color: '#2E2E2E',
+                                fontWeight: 500,
+                                '&.Mui-selected': { color: '#ef4444' }
+                            }} />
+                            <Tab label="Item Three" value="3" sx={{
+                                color: '#2E2E2E',
+                                fontWeight: 500,
+                                '&.Mui-selected': { color: '#ef4444' }
+                            }} />
+                        </TabList>
+                    </div>
                 </Box>
                 <TabPanel value="1">Item One</TabPanel>
                 <TabPanel value="2">Item Two</TabPanel>
