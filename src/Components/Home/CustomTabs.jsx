@@ -21,21 +21,24 @@ const CustomTabs = () => {
                     <div className='flex justify-center items-center'>
                         <TabList onChange={handleChange} aria-label="lab API tabs example" TabIndicatorProps={{
                             style: { backgroundColor: '#FF4444' }
-                        }} className='font-primary'>
+                        }}>
                             <Tab label="Item One" value="1" sx={{
                                 color: '#2E2E2E',
                                 fontWeight: 500,
-                                '&.Mui-selected': { color: '#ef4444' }
+                                '&.Mui-selected': { color: '#ef4444' },
+                                fontFamily: 'var(--font-primary)'
                             }} />
                             <Tab label="Item Two" value="2" sx={{
                                 color: '#2E2E2E',
                                 fontWeight: 500,
-                                '&.Mui-selected': { color: '#ef4444' }
+                                '&.Mui-selected': { color: '#ef4444' },
+                                fontFamily: 'var(--font-primary)'
                             }} />
                             <Tab label="Item Three" value="3" sx={{
                                 color: '#2E2E2E',
                                 fontWeight: 500,
-                                '&.Mui-selected': { color: '#ef4444' }
+                                '&.Mui-selected': { color: '#ef4444' },
+                                fontFamily: 'var(--font-primary)'
                             }} />
                         </TabList>
                     </div>
