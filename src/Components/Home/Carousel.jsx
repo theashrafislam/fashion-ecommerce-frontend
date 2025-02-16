@@ -44,10 +44,10 @@ const Carousel = () => {
                                 <div className='flex flex-col md:flex-row justify-center md:justify-between items-center w-full px-10 md:px-20 lg:px-40'>
                                     {/* Left Text Content */}
                                     <div className='w-full md:w-1/2 text-center md:text-left'>
-                                        <h1 className='font-primary font-bold text-4xl md:text-6xl lg:text-7xl text-[#2e2e2e]'>
+                                        <h1 className='font-primary font-bold text-4xl md:text-6xl lg:text-7xl text-white md:text-[#2e2e2e]'>
                                             <span className='text-nowrap'>Women New</span> Collection
                                         </h1>
-                                        <p className='text-[#2e2e2e] py-2 text-lg md:text-xl font-secondary'>
+                                        <p className='text-white md:text-[#2e2e2e] py-2 text-lg md:text-xl font-secondary'>
                                             Up to 70% off selected Product
                                         </p>
                                         <button
