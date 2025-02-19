@@ -73,7 +73,7 @@ const CustomTabs = () => {
                             <ProductCard />
                         </div>
                         <div className='mt-12 flex justify-center items-center'>
-                            <Stack spacing={2} className='w-full sm:w-[75%] md:w-[50%] flex-nowrap'>
+                            <Stack spacing={2}>
                                 <Pagination count={10} variant="outlined" color="primary" />
                             </Stack>
                         </div>
@@ -90,7 +90,7 @@ const CustomTabs = () => {
                             <ProductCard />
                         </div>
                         <div className='mt-12 flex justify-center items-center'>
-                            <Stack spacing={2} className='w-full sm:w-[75%] md:w-[50%] flex-nowrap'>
+                            <Stack spacing={2}>
                                 <Pagination count={10} variant="outlined" color="primary" />
                             </Stack>
                         </div>
@@ -107,7 +107,7 @@ const CustomTabs = () => {
                             <ProductCard />
                         </div>
                         <div className='mt-12 flex justify-center items-center'>
-                            <Stack spacing={2} className='w-full sm:w-[75%] md:w-[50%] flex-nowrap'>
+                            <Stack spacing={2}>
                                 <Pagination count={10} variant="outlined" color="primary" />
                             </Stack>
                         </div>
