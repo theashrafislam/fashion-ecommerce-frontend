@@ -8,6 +8,8 @@ import Carousel from '../Components/Home/Carousel';
 import PromotionalBanners from '../Components/Home/PromotionalBanners';
 import ServiceFeatures from '../Components/Home/ServiceFeatures';
 import CustomTabs from '../Components/Home/CustomTabs';
+import PromoBanner from '../Components/Home/PromoBanner';
+import DiscountBanner from '../Components/Home/DiscountBanner';
 
 const Home = () => {
     const axiosSecure = useAxiosSecure();
@@ -31,6 +33,12 @@ const Home = () => {
 
             {/* tabs items */}
             <CustomTabs />
+
+            {/* PromoBanner */}
+            <PromoBanner />
+
+            {/* DiscountBanner */}
+            <DiscountBanner />
         </div>
     );
 };

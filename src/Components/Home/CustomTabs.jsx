@@ -4,6 +4,10 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
+import ProductCard from '../ProductCard';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+
 
 
 const CustomTabs = () => {
@@ -15,7 +19,7 @@ const CustomTabs = () => {
     };
 
     return (
-        <div className='max-w-7xl mx-auto my-24'>
+        <div className='max-w-7xl mx-auto my-16'>
             <Box sx={{ width: '100%', typography: 'body1' }}>
                 <TabContext value={value}>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -23,10 +27,10 @@ const CustomTabs = () => {
                             className='flex justify-center items-center overflow-x-auto'
                         >
                             <TabList onChange={handleChange}
-                            className="!min-w-[300px] !w-max"
-                            aria-label="lab API tabs example" TabIndicatorProps={{
-                                style: { backgroundColor: '#FF4444', transition: 'all 0.3s ease-in-out' }
-                            }}>
+                                className="!min-w-[300px] !w-max"
+                                aria-label="lab API tabs example" TabIndicatorProps={{
+                                    style: { backgroundColor: '#FF4444', transition: 'all 0.3s ease-in-out' }
+                                }}>
                                 <Tab label="New Arrivals" value="1" sx={{
                                     color: '#2E2E2E',
                                     fontWeight: 500,
@@ -57,9 +61,57 @@ const CustomTabs = () => {
                             </TabList>
                         </div>
                     </Box>
-                    <TabPanel value="1" className='!p-0 !py-7'>Item One</TabPanel>
-                    <TabPanel value="2" sx={{ padding: 0 }}>Item Two</TabPanel>
-                    <TabPanel value="3" sx={{ padding: 0 }}>Item Three</TabPanel>
+                    <TabPanel value="1" className='!p-0 !py-7'>
+                        <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 mx-3 lg:mx-0'>
+                            <ProductCard />
+                            <ProductCard />
+                            <ProductCard />
+                            <ProductCard />
+                            <ProductCard />
+                            <ProductCard />
+                            <ProductCard />
+                            <ProductCard />
+                        </div>
+                        <div className='mt-12 flex justify-center items-center'>
+                            <Stack spacing={2} className='w-full sm:w-[75%] md:w-[50%] flex-nowrap'>
+                                <Pagination count={10} variant="outlined" color="primary" />
+                            </Stack>
+                        </div>
+                    </TabPanel>
+                    <TabPanel value="2" className='!p-0 !py-7'>
+                        <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 mx-3 lg:mx-0'>
+                            <ProductCard />
+                            <ProductCard />
+                            <ProductCard />
+                            <ProductCard />
+                            <ProductCard />
+                            <ProductCard />
+                            <ProductCard />
+                            <ProductCard />
+                        </div>
+                        <div className='mt-12 flex justify-center items-center'>
+                            <Stack spacing={2} className='w-full sm:w-[75%] md:w-[50%] flex-nowrap'>
+                                <Pagination count={10} variant="outlined" color="primary" />
+                            </Stack>
+                        </div>
+                    </TabPanel>
+                    <TabPanel value="3" className='!p-0 !py-7'>
+                        <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 mx-3 lg:mx-0'>
+                            <ProductCard />
+                            <ProductCard />
+                            <ProductCard />
+                            <ProductCard />
+                            <ProductCard />
+                            <ProductCard />
+                            <ProductCard />
+                            <ProductCard />
+                        </div>
+                        <div className='mt-12 flex justify-center items-center'>
+                            <Stack spacing={2} className='w-full sm:w-[75%] md:w-[50%] flex-nowrap'>
+                                <Pagination count={10} variant="outlined" color="primary" />
+                            </Stack>
+                        </div>
+                    </TabPanel>
                 </TabContext>
             </Box>
         </div>
