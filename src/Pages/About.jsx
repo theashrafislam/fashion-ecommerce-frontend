@@ -1,5 +1,7 @@
 import React from 'react';
 import ActivePage from '../Components/ActivePage';
+import Us from '../Components/About/Us';
+import OurServices from '../Components/About/OurServices';
 
 const About = () => {
     return (
@@ -13,10 +15,15 @@ const About = () => {
                         <p className='text-[#666666] text-sm font-secondary'>For this reason, our each design serves an idea. Our strength in design is reflected by our name, our care for details. Our specialist won't be afraid to go extra miles just to approach near perfection. We don't require everything to be perfect, but we need them to be perfectly cared for. That's a reason why we are willing to give contributions at best. Not a single detail is missed out under Billey's professional eyes.The amount of dedication and effort equals to the level of passion and by.</p>
                     </div>
                     <div className='w-full md:w-[50%] overflow-hidden'>
-                        <img src="/about.webp" alt="" className='w-full hover:transition-transform hover:duration-300 hover:scale-110' />
+                        <img src="/about/about.webp" alt="" className='w-full hover:transition-transform hover:duration-300 hover:scale-110' />
                     </div>
                 </div>
             </div>
+            {/* Parallax Background */}
+            <OurServices />
+
+            {/* about  us section  */}
+            <Us />
         </div>
     );
 };
