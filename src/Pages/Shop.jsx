@@ -3,6 +3,7 @@ import ActivePage from '../Components/ActivePage';
 import { IoSearch } from "react-icons/io5";
 import { CgMenuGridR } from 'react-icons/cg';
 import { TfiMenuAlt } from "react-icons/tfi";
+import MenuCategories from '../Components/Shop/MenuCategories';
 
 
 
@@ -25,6 +26,9 @@ const Shop = () => {
                         <button className='bg-black p-3 hover:bg-red-500'><IoSearch className='text-white text-lg font-bold' /></button>
                     </div>
 
+                    {/* Menu Categories */}
+                    <MenuCategories />
+
                 </div>
                 <div className='w-full md:w-[75%]'>
                     {/* header  */}
@@ -36,8 +40,8 @@ const Shop = () => {
                             {/* selete by anyone  */}
                             <div className='font-secondary text-sm text-[#212121]'>
                                 <select name="" id="" className='px-3 py-2 border-1 border-gray-300 focus:border-red-500 outline-none'>
-                                    <option value="Hello"  className="hover:bg-transparent">Hello</option>
-                                    <option value="Hello 1"  className="hover:bg-transparent">Hello 1</option>
+                                    <option value="Hello" className="hover:bg-transparent">Hello</option>
+                                    <option value="Hello 1" className="hover:bg-transparent">Hello 1</option>
                                     <option value="Hello 2">Hello 2</option>
                                     <option value="Hello 3">Hello 3</option>
                                 </select>
