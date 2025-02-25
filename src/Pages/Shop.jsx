@@ -45,11 +45,11 @@ const Shop = () => {
 
                             {/* sort by something  */}
                             <div className='font-secondary text-sm text-[#212121]'>
-                                <select name="" id="" className='px-3 py-2 border-1 border-gray-300'>
-                                    <option value="Hello">Sort by default</option>
-                                    <option value="Hello 1">Sort by price</option>
-                                    <option value="Hello 2">Sort by rated</option>
-                                    <option value="Hello 3">Sort by lasted</option>
+                                <select name="" id="" className='px-3 py-2 border-1 border-gray-300 focus:border-red-500 outline-none'>
+                                    <option value="Sort by default">Sort by default</option>
+                                    <option value="Sort by price">Sort by price</option>
+                                    <option value="Sort by rated">Sort by rated</option>
+                                    <option value="Sort by lasted">Sort by lasted</option>
                                 </select>
                             </div>
 
