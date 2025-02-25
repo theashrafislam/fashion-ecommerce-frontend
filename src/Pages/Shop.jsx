@@ -4,6 +4,7 @@ import { IoSearch } from "react-icons/io5";
 import { CgMenuGridR } from 'react-icons/cg';
 import { TfiMenuAlt } from "react-icons/tfi";
 import MenuCategories from '../Components/Shop/MenuCategories';
+import Categories from '../Components/Shop/Categories';
 
 
 
@@ -28,6 +29,10 @@ const Shop = () => {
 
                     {/* Menu Categories */}
                     <MenuCategories />
+
+
+                    {/* Categories */}
+                    <Categories />
 
                 </div>
                 <div className='w-full md:w-[75%]'>

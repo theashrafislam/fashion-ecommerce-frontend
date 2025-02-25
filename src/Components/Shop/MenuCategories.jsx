@@ -16,7 +16,7 @@ const MenuCategories = () => {
     return (
         <div className='font-primary my-10'>
             <div>
-                <h4 className='text-xl text-[#2E2E2E] pb-1 mb-4 border-b-2 border-[#EBEBEB]'>Menu Categories</h4>
+                <h4 className='text-xl text-[#2E2E2E] pb-1 mb-3 border-b-2 border-[#EBEBEB]'>Menu Categories</h4>
 
                 {/* Accordion  */}
                 <div>
