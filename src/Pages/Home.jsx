@@ -10,6 +10,7 @@ import ServiceFeatures from '../Components/Home/ServiceFeatures';
 import CustomTabs from '../Components/Home/CustomTabs';
 import PromoBanner from '../Components/Home/PromoBanner';
 import DiscountBanner from '../Components/Home/DiscountBanner';
+import Clients from '../Components/Home/Clients';
 
 const Home = () => {
     const axiosSecure = useAxiosSecure();
@@ -39,6 +40,9 @@ const Home = () => {
 
             {/* DiscountBanner */}
             <DiscountBanner />
+
+            {/* Clients */}
+            <Clients />
         </div>
     );
 };

@@ -23,7 +23,9 @@ const About = () => {
             <OurServices />
 
             {/* about  us section  */}
-            <Us />
+            <div className='mx-3 md:mx-0'>
+                <Us />
+            </div>
         </div>
     );
 };
