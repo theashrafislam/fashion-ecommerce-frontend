@@ -4,7 +4,11 @@ import { IoSearch } from "react-icons/io5";
 import { CgMenuGridR } from 'react-icons/cg';
 import { TfiMenuAlt } from "react-icons/tfi";
 
+
+
 const Shop = () => {
+
+
     return (
         <div className='font-primary'>
             <ActivePage mainRoute={'Home'} route={'Shop'} />
@@ -24,23 +28,23 @@ const Shop = () => {
                 </div>
                 <div className='w-full md:w-[75%]'>
                     {/* header  */}
-                    <div className='flex justify-between border-1 items-center border-[#666666] px-4 py-2'>
+                    <div className='flex justify-between border-1 items-center border-gray-300 px-4 py-2'>
 
-                        <p>Showing 1-12 of 39 results</p>
+                        <p className='font-secondary text-sm text-[#212121]'>Showing 1-12 of 39 results</p>
 
                         <div className='flex gap-3 items-center'>
                             {/* selete by anyone  */}
-                            <div>
-                                <select name="" id="" className='px-3 py-2 border-1 border-gray-300'>
-                                    <option value="Hello">Hello</option>
-                                    <option value="Hello 1">Hello 1</option>
+                            <div className='font-secondary text-sm text-[#212121]'>
+                                <select name="" id="" className='px-3 py-2 border-1 border-gray-300 focus:border-red-500 outline-none'>
+                                    <option value="Hello"  className="hover:bg-transparent">Hello</option>
+                                    <option value="Hello 1"  className="hover:bg-transparent">Hello 1</option>
                                     <option value="Hello 2">Hello 2</option>
                                     <option value="Hello 3">Hello 3</option>
                                 </select>
                             </div>
 
                             {/* sort by something  */}
-                            <div>
+                            <div className='font-secondary text-sm text-[#212121]'>
                                 <select name="" id="" className='px-3 py-2 border-1 border-gray-300'>
                                     <option value="Hello">Sort by default</option>
                                     <option value="Hello 1">Sort by price</option>
@@ -51,8 +55,8 @@ const Shop = () => {
 
                             {/* how to show cards  */}
                             <div className='flex gap-3 items-center'>
-                                <CgMenuGridR className='text-3xl' />
-                                <TfiMenuAlt className='text-3xl' />
+                                <CgMenuGridR className='text-3xl p-1 border-1 border-gray-300' />
+                                <TfiMenuAlt className='text-3xl p-1 border-1 border-gray-300' />
                             </div>
                         </div>
 
