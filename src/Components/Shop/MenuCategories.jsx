@@ -40,7 +40,7 @@ const MenuCategories = () => {
                             }}
                         >
                             <Typography component="span" sx={{ width: '33%', flexShrink: 0, whiteSpace: 'nowrap', fontFamily: 'inherit', fontWeight: 'bold', fontSize: '14px', color: '#2E2E2E', cursor: 'pointer', '&:hover': { color: "red" } }}>
-                                Women
+                                <p>Women</p>
                             </Typography>
                         </AccordionSummary>
                         <AccordionDetails>

@@ -5,6 +5,7 @@ import { CgMenuGridR } from 'react-icons/cg';
 import { TfiMenuAlt } from "react-icons/tfi";
 import MenuCategories from '../Components/Shop/MenuCategories';
 import Categories from '../Components/Shop/Categories';
+import Tags from '../Components/Shop/Tags';
 
 
 
@@ -33,6 +34,9 @@ const Shop = () => {
 
                     {/* Categories */}
                     <Categories />
+
+                    {/* Tags */}
+                    <Tags />
 
                 </div>
                 <div className='w-full md:w-[75%]'>
