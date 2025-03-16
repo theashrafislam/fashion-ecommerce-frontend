@@ -38,7 +38,7 @@ let router = createBrowserRouter([
             },
             {
                 path: '/in/:email',
-                element: <PrivateRoute><Profile /></PrivateRoute>
+                element: <Profile />
             },
             {
                 path: '/shop',
