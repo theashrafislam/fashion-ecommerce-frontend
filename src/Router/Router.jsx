@@ -9,6 +9,7 @@ import Contact from "../Pages/Contact";
 import Profile from "../Pages/Profile";
 import PrivateRoute from "./PrivateRoute";
 import Shop from "../Pages/Shop";
+import CheckOut from "../Components/CheckOut/CheckOut";
 
 let router = createBrowserRouter([
     {
@@ -43,6 +44,10 @@ let router = createBrowserRouter([
             {
                 path: '/shop',
                 element: <Shop />
+            },
+            {
+                path: '/checkout',
+                element: <CheckOut />
             }
         ]
     }
