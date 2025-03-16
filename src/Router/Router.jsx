@@ -9,7 +9,7 @@ import Contact from "../Pages/Contact";
 import Profile from "../Pages/Profile";
 import PrivateRoute from "./PrivateRoute";
 import Shop from "../Pages/Shop";
-import CheckOut from "../Components/CheckOut/CheckOut";
+import Cart from "../Pages/Cart";
 
 let router = createBrowserRouter([
     {
@@ -46,8 +46,8 @@ let router = createBrowserRouter([
                 element: <Shop />
             },
             {
-                path: '/checkout',
-                element: <CheckOut />
+                path: '/cart',
+                element: <Cart />
             }
         ]
     }

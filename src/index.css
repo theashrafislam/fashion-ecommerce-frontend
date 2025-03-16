@@ -1,3 +1,5 @@
+/* index.css or any global stylesheet */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Poppins:wght@400;600&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -9,3 +11,12 @@
     --font-primary: Montserrat, sans-serif;
     --font-secondary: Poppins, sans-serif;
 }
+
+/* Add this in index.css */
+.font-primary {
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .font-secondary {
+    font-family: 'Poppins', sans-serif;
+  }
