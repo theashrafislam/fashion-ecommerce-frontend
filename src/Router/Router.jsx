@@ -10,6 +10,7 @@ import Profile from "../Pages/Profile";
 import PrivateRoute from "./PrivateRoute";
 import Shop from "../Pages/Shop";
 import Cart from "../Pages/Cart";
+import ProductDetails from "../Pages/ProductDetails";
 
 let router = createBrowserRouter([
     {
@@ -48,6 +49,10 @@ let router = createBrowserRouter([
             {
                 path: '/cart',
                 element: <Cart />
+            },
+            {
+                path: '/product/:id',
+                element: <ProductDetails />
             }
         ]
     }
