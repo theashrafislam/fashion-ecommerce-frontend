@@ -4,6 +4,7 @@ import Rating from '@mui/material/Rating';
 import { Link } from 'react-router-dom';
 
 const ProductCard = ({ card }) => {
+    
     const [value, setValue] = React.useState(2);
 
     return (
