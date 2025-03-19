@@ -11,19 +11,25 @@ const ProductDetails = () => {
     return (
         <div>
             <ActivePage route={'Product Details'} mainRoute={'Home'} />
-            {/* main section  */}
-            <div className='max-w-7xl mx-auto my-24 flex flex-col items-start justify-between md:flex-row gap-7'>
-                <div className='w-full lg:w-[40%]'>
-                    <ProductDetailsImage />
-                </div>
-                <div className='w-full lg:w-[60%]'>
-                    <ProductsDetailsContent />
+            <div className='mx-3 lg:mx-0'>
+                {/* main section  */}
+                <div className='max-w-7xl mx-auto my-24 flex flex-col items-start justify-between lg:flex-row gap-7'>
+                    <div className='w-full lg:w-[40%]'>
+                        <ProductDetailsImage />
+                    </div>
+                    <div className='w-full lg:w-[60%]'>
+                        <ProductsDetailsContent />
+                    </div>
                 </div>
             </div>
-            {/* tabs  */}
-            <div className='max-w-7xl mx-auto my-10 font-secondary'>
-                <ProductDetailsTabs />
+
+            <div className='mx-3 lg:mx-0'>
+                {/* tabs  */}
+                <div className='max-w-7xl mx-auto my-10 font-secondary'>
+                    <ProductDetailsTabs />
+                </div>
             </div>
+
         </div>
     );
 };

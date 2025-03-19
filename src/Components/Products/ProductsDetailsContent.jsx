@@ -74,9 +74,9 @@ const ProductsDetailsContent = () => {
             </div>
 
             {/* button  */}
-            <div className='flex items-center gap-3 mb-6'>
-                <button className='text-base font-semibold px-8 py-4 uppercase border border-black rounded-md hover:bg-red-500 hover:text-white text-black hover:border-none'>ADD TO CART</button>
-                <button className='text-base font-semibold px-8 py-4 uppercase border border-black rounded-md hover:bg-red-500 hover:text-white text-black hover:border-none'>ADD TO WISHLIST</button>
+            <div className='flex items-center flex-col md:flex-row gap-3 mb-6'>
+                <button className='w-full md:w-auto text-base font-semibold px-8 py-4 uppercase border border-black rounded-md hover:bg-red-500 hover:text-white text-black hover:border-none'>ADD TO CART</button>
+                <button className='w-full md:w-auto text-base font-semibold px-8 py-4 uppercase border border-black rounded-md hover:bg-red-500 hover:text-white text-black hover:border-none'>ADD TO WISHLIST</button>
             </div>
 
             {/* share */}
