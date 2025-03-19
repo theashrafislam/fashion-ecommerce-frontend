@@ -23,7 +23,7 @@ const SignUp = () => {
         alert("File size exceeds 2 MB limit.");
         return;
       }
-
+      setIsSubmitting(true)
       const formData = new FormData();
       formData.append("image", file);
 
@@ -34,7 +34,9 @@ const SignUp = () => {
         const imageUrl = res.data.data.url;
         setImageUrl(imageUrl);
       } catch (error) {
-        console.error("Image upload failed:", error);
+        toast.error("Image upload failed. Try again.");
+      } finally {
+        setIsSubmitting(false);
       }
     }
   };
@@ -43,16 +45,21 @@ const SignUp = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
   const onSubmit = async (data) => {
+    setIsSubmitting(true);
     if (!imageUrl) {
       toast.error("Please wait! Image is still uploading.");
       setIsSubmitting(false);
       return;
     }
-    setIsSubmitting(true);
+
     if (data?.password.length < 6) {
+      toast.error('Password must be at least 6 characters long!');
       setIsSubmitting(false);
-      return toast.error('Password must be at least 6 characters long!')
+      return;
     }
+
+    setIsSubmitting(true);
+
     try {
       data.image = imageUrl;
       const userInfo = {
@@ -62,26 +69,18 @@ const SignUp = () => {
         image: data?.image
       };
 
-      // await createUserEmailPassword(data.email, data.password);
-      // await updateProfileInformation(data.name, data.image);
-      // await userSignOut();
+      await createUserEmailPassword(data?.email, data?.password);
+      await updateProfileInformation(data?.name, data?.image);
+      const response = await axiosPublic.post('/sign-up-user-info', userInfo);
 
-      createUserEmailPassword(data?.email, data?.password)
-        .then(() => {
-          console.log('helo');
-        })
-        .catch(error => {
-          console.log(error);
-        })
-
-      // const response = await axiosPublic.post('/sign-up-user-info', userInfo);
-
-      // if (response?.data?.data?.insertedId) {
-      //   toast.success('Welcome! Your account is ready.');
-      //   navigate('/sign-in');
-      // }
+      if (response?.data?.data?.insertedId) {
+        toast.success('Welcome! Your account is ready.');
+        await userSignOut()
+        navigate('/sign-in');
+      }
     } catch (error) {
       let errorMessage = "An error occurred. Please try again.";
+
       if (error.code === "auth/email-already-in-use") {
         errorMessage = "This email is already in use. Please use a different email.";
       } else if (error.code === "auth/weak-password") {
@@ -89,6 +88,7 @@ const SignUp = () => {
       } else if (error.code === "auth/invalid-email") {
         errorMessage = "Invalid email address.";
       }
+
       toast.error(errorMessage);
     } finally {
       setIsSubmitting(false);
