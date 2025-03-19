@@ -88,15 +88,15 @@ const ProductsDetailsContent = () => {
             {/* point of this product  */}
             <div className='border-b border-t border-gray-300 py-6 flex flex-col gap-2'>
                 <div className='flex items-center gap-1'>
-                    <MdCheckCircle className='text-xl' />
+                    <MdCheckCircle className='text-xl w-10' />
                     <p>Security Policy (Edit With Customer Reassurance Module)</p>
                 </div>
                 <div className='flex items-center gap-1'>
-                    <TbTruckDelivery className='text-xl' />
+                    <TbTruckDelivery className='text-xl w-10' />
                     <p>Delivery Policy (Edit With Customer Reassurance Module)</p>
                 </div>
                 <div className='flex items-center gap-1'>
-                    <BsArrowRepeat className='text-xl' />
+                    <BsArrowRepeat className='text-xl w-10' />
                     <p>Return Policy (Edit With Customer Reassurance Module)</p>
                 </div>
                 
