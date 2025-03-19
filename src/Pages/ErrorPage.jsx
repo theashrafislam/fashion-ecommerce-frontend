@@ -19,7 +19,7 @@ const ErrorPage = () => {
                         removed, name changed or is temporarily unavailable</p>
                     <Link
                         to={"/"}
-                        className='w-full md:w-fit px-8 md:px-10 py-3 hover:bg-black text-white bg-red-500 hover:text-white font-semibold font-primary mt-5 md:mt-7'>
+                        className='w-full md:w-fit px-8 md:px-10 py-3 hover:bg-black text-white bg-red-500 hover:text-white text-center font-semibold font-primary mt-5 md:mt-7'>
                         Back To Home
                     </Link>
                 </div>
