@@ -46,7 +46,8 @@ const WishlistTable = () => {
                   sx={{
                     borderColor: '#212121',
                     color: '#212121',
-                    '&:hover': { backgroundColor: '#FF4545', borderColor: '#FF4545', color: 'white' }
+                    '&:hover': { backgroundColor: '#FF4545', borderColor: '#FF4545', color: 'white' },
+                    whiteSpace: 'nowrap'
                   }}
                   disabled={item.stock === "Out of Stock"}
                 >
