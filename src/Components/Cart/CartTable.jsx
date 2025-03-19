@@ -44,7 +44,7 @@ const CartTable = () => {
           {cart.map((item) => (
             <TableRow key={item.id}>
               <TableCell>
-                <img src={item.image} alt={item.name} className="w-20 h-25 object-cover" />
+                <img src={item.image} alt={item.name} className=" " />
               </TableCell>
               <TableCell>
                 {item.name} <br /> <span className="text-gray-500">{item.variant}</span>
