@@ -8,8 +8,6 @@ import ProductCard from '../ProductCard';
 
 const ProductDetailsTabs = () => {
     const [value, setValue] = React.useState('1');
-    console.log(value);
-
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
