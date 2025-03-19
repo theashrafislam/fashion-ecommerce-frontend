@@ -66,6 +66,24 @@ const ProductDetailsTabs = () => {
                     <TabPanel value="3" className='!p-0 !py-7'>
                         <div className='mx-3 lg:mx-0'>
                             <h6 className='text-2xl text-[#2E2E2E] mb-2'>Shipping policy for our store</h6>
+                            <p className='text-sm text-[#535353]'>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate</p>
+
+                            <ul className="list-disc pl-5 py-4 text-base text-[#666666]">
+                                <li>1-2 business days (Typically by end of day)</li>
+                                <li>30 days money back guaranty</li>
+                                <li>24/7 live support</li>
+                                <li>Odio dignissim qui blandit praesent</li>
+                                <li>luptatum zzril delenit augue duis dolore</li>
+                                <li>Te feugait nulla facilisi.</li>
+                            </ul>
+
+                            <div className='flex flex-col gap-2'>
+                                <p className='text-sm text-[#535353]'>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum</p>
+
+                                <p className='text-sm text-[#535353]'>claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per</p>
+
+                                <p className='text-sm text-[#535353]'>seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</p>
+                            </div>
                         </div>
                     </TabPanel>
                 </TabContext>
