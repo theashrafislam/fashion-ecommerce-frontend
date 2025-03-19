@@ -6,7 +6,7 @@ import { TfiMenuAlt } from "react-icons/tfi";
 import MenuCategories from '../Components/Shop/MenuCategories';
 import Categories from '../Components/Shop/Categories';
 import Tags from '../Components/Shop/Tags';
-import ProductCard from '../Components/ProductCard';
+import ProductCard from '../Components/Products/ProductCard';
 import { Pagination, Stack } from '@mui/material';
 
 

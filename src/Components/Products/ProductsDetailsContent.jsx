@@ -11,7 +11,6 @@ import { BsArrowRepeat } from "react-icons/bs";
 import ProductDetailsTabs from './ProductDetailsTabs';
 
 const ProductsDetailsContent = () => {
-    const [value, setValue] = React.useState(3);
 
     const [quantity, setQuantity] = useState(1);
 
@@ -34,7 +33,7 @@ const ProductsDetailsContent = () => {
             </p>
 
             <Box sx={{ '& > legend': { mt: 2 } }} className={'mb-3'}>
-                <Rating name="read-only" value={value} readOnly />
+                <Rating name="read-only" value={3} readOnly />
             </Box>
 
             <p className='text-sm text-[#666666] mb-3 font-secondary'>SKU: 12345</p>

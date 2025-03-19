@@ -4,6 +4,7 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
+import CustomerReview from './CustomerReview';
 
 const ProductDetailsTabs = () => {
     const [value, setValue] = React.useState('1');
@@ -59,7 +60,7 @@ const ProductDetailsTabs = () => {
                     </TabPanel>
                     <TabPanel value="2" className='!p-0 !py-7'>
                         <div className='mx-3 lg:mx-0 border border-gray-300 p-4'>
-                            <p>Customer reviews go here...</p>
+                            <CustomerReview />
                         </div>
                     </TabPanel>
                     <TabPanel value="3" className='!p-0 !py-7'>
