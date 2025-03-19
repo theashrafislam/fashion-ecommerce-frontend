@@ -8,6 +8,7 @@ import ProductCard from '../ProductCard';
 
 const ProductDetailsTabs = () => {
     const [value, setValue] = React.useState('1');
+    console.log(value);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -55,17 +56,17 @@ const ProductDetailsTabs = () => {
                         </div>
                     </Box>
                     <TabPanel value="1" className='!p-0 !py-7'>
-                        <div className='mx-3 lg:mx-0'>
-                            <p>Product description goes here...</p>
+                        <div className='mx-3 lg:mx-0 border border-gray-300 p-4'>
+                            <p className='text-red-500'>Product description goes here...</p>
                         </div>
                     </TabPanel>
                     <TabPanel value="2" className='!p-0 !py-7'>
-                        <div className='mx-3 lg:mx-0'>
+                        <div className='mx-3 lg:mx-0 border border-gray-300 p-4'>
                             <p>Customer reviews go here...</p>
                         </div>
                     </TabPanel>
                     <TabPanel value="3" className='!p-0 !py-7'>
-                        <div className='mx-3 lg:mx-0'>
+                        <div className='mx-3 lg:mx-0 border border-gray-300 p-4'>
                             <p>Shipping policy details go here...</p>
                         </div>
                     </TabPanel>

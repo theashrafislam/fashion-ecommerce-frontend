@@ -104,9 +104,7 @@ const ProductsDetailsContent = () => {
                     <BsArrowRepeat className='text-xl' />
                     <p>Return Policy (Edit With Customer Reassurance Module)</p>
                 </div>
-                <div>
-                    <ProductDetailsTabs />
-                </div>
+                
             </div>
 
         </div>

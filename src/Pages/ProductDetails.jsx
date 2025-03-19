@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import ActivePage from '../Components/ActivePage';
 import ProductDetailsImage from '../Components/Products/ProductDetailsImage';
 import ProductsDetailsContent from '../Components/Products/ProductsDetailsContent';
+import ProductDetailsTabs from '../Components/Products/ProductDetailsTabs';
 
 const ProductDetails = () => {
     const { id } = useParams();
@@ -18,6 +19,10 @@ const ProductDetails = () => {
                 <div className='w-full lg:w-[60%]'>
                     <ProductsDetailsContent />
                 </div>
+            </div>
+            {/* tabs  */}
+            <div className='max-w-7xl mx-auto my-10 font-secondary'>
+                <ProductDetailsTabs />
             </div>
         </div>
     );
