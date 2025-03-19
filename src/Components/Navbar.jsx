@@ -24,10 +24,14 @@ import useAuth from '../Hooks/useAuth';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import ProfileIcon from './Icons/ProfileIcon';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
     const nagivate = useNavigate();
-    const { user, loading, userSignOut } = useAuth();
+    // const { user, loading, userSignOut } = useAuth();
+    const { user, loading } = useSelector((state) => state.auth);
+    console.log(user);
+
     // console.log(user);
 
     const handleLogOut = () => {
