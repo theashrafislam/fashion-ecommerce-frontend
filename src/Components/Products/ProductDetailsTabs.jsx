@@ -64,8 +64,8 @@ const ProductDetailsTabs = () => {
                         </div>
                     </TabPanel>
                     <TabPanel value="3" className='!p-0 !py-7'>
-                        <div className='mx-3 lg:mx-0 border border-gray-300 p-3'>
-                            <p>Shipping policy details go here...</p>
+                        <div className='mx-3 lg:mx-0'>
+                            <h6 className='text-2xl text-[#2E2E2E] mb-2'>Shipping policy for our store</h6>
                         </div>
                     </TabPanel>
                 </TabContext>
