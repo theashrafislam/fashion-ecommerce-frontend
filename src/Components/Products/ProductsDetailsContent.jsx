@@ -1,6 +1,4 @@
 import React from 'react';
-import Box from '@mui/material/Box';
-import Rating from '@mui/material/Rating';
 import { useState } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { FaPinterest, FaSquareFacebook, FaSquareInstagram } from "react-icons/fa6";
@@ -8,7 +6,7 @@ import { IoLogoLinkedin } from 'react-icons/io5';
 import { MdCheckCircle } from "react-icons/md";
 import { TbTruckDelivery } from "react-icons/tb";
 import { BsArrowRepeat } from "react-icons/bs";
-import ProductDetailsTabs from './ProductDetailsTabs';
+import StarRating from '../Rating/StarRating';
 
 const ProductsDetailsContent = () => {
 
@@ -32,11 +30,9 @@ const ProductsDetailsContent = () => {
                 <del className='text-lg text-[#666666] mb-2'>$90.00</del>
             </p>
 
-            <Box sx={{ '& > legend': { mt: 2 } }} className={'mb-3'}>
-                <Rating name="read-only" value={3} readOnly />
-            </Box>
+            <StarRating />
 
-            <p className='text-sm text-[#666666] mb-3 font-secondary'>SKU: 12345</p>
+            <p className='text-sm text-[#666666] mt-3 mb-3 font-secondary'>SKU: 12345</p>
 
             <p className='text-sm text-[#535353] mb-3 font-medium font-secondary'>I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.</p>
 
