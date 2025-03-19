@@ -28,7 +28,7 @@ const GoogleLoginButton = () => {
                 className='cursor-pointer w-full flex items-center justify-center gap-3 border-gray-500 border-2 text-base font-semibold py-2 px-6 rounded-lg over:bg-red-600 transition duration-300'
             >
                 <FcGoogle className='text-3xl' />
-                <span>Login with Google</span>
+                <span className='text-nowrap'>Login with Google</span>
             </button>
         </div>
     );
