@@ -8,7 +8,7 @@ const ProductCard = ({ card }) => {
     const [value, setValue] = React.useState(2);
 
     return (
-        <Link to={`/product/${card}`}>
+        <Link to={`/product/${card}`} className='flex items-center justify-center'>
             <Card sx={{ maxWidth: 300, p: 2, border: '1px solid #999', borderRadius: 2 }}>
                 <CardMedia
                     component="img"

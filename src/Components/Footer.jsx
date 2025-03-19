@@ -7,7 +7,7 @@ const Footer = () => {
         <section className='font-secondary'>
             {/* first section  */}
             <div className='bg-[#F6F7F7] '>
-                <div className='flex flex-col px-5 md:px-3 lg:px-0 md:flex-row justify-between gap-5 max-w-7xl mx-auto py-12'>
+                <div className='flex flex-col px-3 md:px-3 lg:px-0 md:flex-row justify-between gap-5 max-w-7xl mx-auto py-12'>
                     {/* contact us  */}
                     
                     <div className='md:w-[30%]'>
