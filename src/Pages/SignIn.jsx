@@ -28,8 +28,6 @@ const SignIn = () => {
     setLoading(true)
     signInEmailPassword(data?.email, data?.password)
       .then(async () => {
-        // const response = await axiosSecure.get(`/jwt?email=${data?.email}`);
-        // if (response?.data?.status === 200) {
         navigate(location?.state?.pathname || '/');
         toast.success("Login successful! Welcome back! 🎉");
         setLoading(false);
@@ -38,7 +36,7 @@ const SignIn = () => {
       .catch(error => {
         setLoading(false);
         toast.error(error?.message)
-        console.log(error);
+        // console.log(error);
       })
   }
 
