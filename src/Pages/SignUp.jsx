@@ -19,8 +19,8 @@ const SignUp = () => {
     const file = event.target.files[0];
 
     if (file) {
-      if (file.size > 32 * 1024 * 1024) {
-        alert("File size exceeds 32 MB limit.");
+      if (file.size > 2 * 1024 * 1024) {
+        alert("File size exceeds 2 MB limit.");
         return;
       }
 
@@ -29,15 +29,8 @@ const SignUp = () => {
 
       try {
         const res = await axios.post(
-          `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMAGE_API_KEY}`,
-          formData,
-          {
-            headers: {
-              "content-type": "multipart/form-data",
-            },
-          }
+          `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMAGE_API_KEY}`, formData, { headers: { "content-type": "multipart/form-data", } }
         );
-
         const imageUrl = res.data.data.url;
         setImageUrl(imageUrl);
       } catch (error) {
@@ -47,12 +40,7 @@ const SignUp = () => {
   };
 
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm()
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
   const onSubmit = async (data) => {
     if (!imageUrl) {
@@ -61,7 +49,7 @@ const SignUp = () => {
       return;
     }
     setIsSubmitting(true);
-    if(data?.password.length < 6){
+    if (data?.password.length < 6) {
       setIsSubmitting(false);
       return toast.error('Password must be at least 6 characters long!')
     }
@@ -74,16 +62,24 @@ const SignUp = () => {
         image: data?.image
       };
 
-      await createUserEmailPassword(data.email, data.password);
-      await updateProfileInformation(data.name, data.image);
-      await userSignOut();
+      // await createUserEmailPassword(data.email, data.password);
+      // await updateProfileInformation(data.name, data.image);
+      // await userSignOut();
 
-      const response = await axiosPublic.post('/sign-up-user-info', userInfo);
+      createUserEmailPassword(data?.email, data?.password)
+        .then(() => {
+          console.log('helo');
+        })
+        .catch(error => {
+          console.log(error);
+        })
 
-      if (response?.data?.data?.insertedId) {
-        toast.success('Welcome! Your account is ready.');
-        navigate('/sign-in');
-      }
+      // const response = await axiosPublic.post('/sign-up-user-info', userInfo);
+
+      // if (response?.data?.data?.insertedId) {
+      //   toast.success('Welcome! Your account is ready.');
+      //   navigate('/sign-in');
+      // }
     } catch (error) {
       let errorMessage = "An error occurred. Please try again.";
       if (error.code === "auth/email-already-in-use") {
