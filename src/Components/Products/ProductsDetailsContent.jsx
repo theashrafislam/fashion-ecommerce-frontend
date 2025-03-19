@@ -8,6 +8,7 @@ import { IoLogoLinkedin } from 'react-icons/io5';
 import { MdCheckCircle } from "react-icons/md";
 import { TbTruckDelivery } from "react-icons/tb";
 import { BsArrowRepeat } from "react-icons/bs";
+import ProductDetailsTabs from './ProductDetailsTabs';
 
 const ProductsDetailsContent = () => {
     const [value, setValue] = React.useState(3);
@@ -102,6 +103,9 @@ const ProductsDetailsContent = () => {
                 <div className='flex items-center gap-1'>
                     <BsArrowRepeat className='text-xl' />
                     <p>Return Policy (Edit With Customer Reassurance Module)</p>
+                </div>
+                <div>
+                    <ProductDetailsTabs />
                 </div>
             </div>
 
