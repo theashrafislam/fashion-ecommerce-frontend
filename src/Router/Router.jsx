@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 import Shop from "../Pages/Shop";
 import Cart from "../Pages/Cart";
 import ProductDetails from "../Pages/ProductDetails";
+import Wishlist from "../Pages/Wishlist";
 
 let router = createBrowserRouter([
     {
@@ -53,6 +54,10 @@ let router = createBrowserRouter([
             {
                 path: '/product/:id',
                 element: <ProductDetails />
+            },
+            {
+                path: '/hey',
+                element: <Wishlist />
             }
         ]
     }
