@@ -58,8 +58,6 @@ const SignUp = () => {
       return;
     }
 
-    setIsSubmitting(true);
-
     try {
       data.image = imageUrl;
       const userInfo = {
