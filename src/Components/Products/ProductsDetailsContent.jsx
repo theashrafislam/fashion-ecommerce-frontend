@@ -4,6 +4,7 @@ const ProductsDetailsContent = () => {
     return (
         <div>
             <h3>Sample product</h3>
+            <p>hello</p>
         </div>
     );
 };
