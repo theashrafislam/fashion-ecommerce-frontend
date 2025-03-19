@@ -5,7 +5,7 @@ const CustomerReview = () => {
     return (
         <div className='font-secondary'>
             {/* image and text section  */}
-            <div className='flex items-start gap-5'>
+            <div className='flex flex-col lg:flex-row items-start gap-5'>
                 <img src="/1.webp" alt="" />
                 <div className='border border-gray-300 p-3'>
                     <StarRating />
@@ -23,14 +23,14 @@ const CustomerReview = () => {
                 <StarRating />
             </div>
             {/* review create box  */}
-            <div className='flex items-center justify-between gap-6'>
+            <div className='flex flex-col md:flex-row items-center justify-between gap-6'>
                 {/* name  */}
-                <div className='flex-col gap-1 flex w-[50%]'>
+                <div className='flex-col gap-1 flex w-full lg:w-[50%]'>
                     <label htmlFor="name" className='text-base text-[#666666]'>Name *</label>
                     <input type="text" name="name" id="name" className='p-2 border border-gray-300 focus:border-red-500 focus:outline-none w-full'/>
                 </div>
                 {/* email  */}
-                <div className='flex-col gap-1 flex w-[50%]'>
+                <div className='flex-col gap-1 flex w-full lg:w-[50%]'>
                     <label htmlFor="name" className='text-base text-[#666666]'>Email *</label>
                     <input type="text" name="email" id="email" className='p-2 border border-gray-300 focus:border-red-500 focus:outline-none w-full'/>
                 </div>
