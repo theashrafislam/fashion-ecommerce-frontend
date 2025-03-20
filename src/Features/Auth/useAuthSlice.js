@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, updateProfile } from "firebase/auth";
 import { app } from "../../Firebase/firebase.config";
 
 
@@ -9,7 +9,7 @@ const auth = getAuth(app);
 
 export const createUsingEmailPassword = createAsyncThunk(
     'auth/createUser',
-    async (email, password) => {
+    async ({ email, password }) => {
         try {
             const userCredential = createUserWithEmailAndPassword(auth, email, password);
             console.log(userCredential);
@@ -18,7 +18,25 @@ export const createUsingEmailPassword = createAsyncThunk(
             throw new Error(error.message);
         }
     }
-)
+);
+
+export const updateProfileInformation = createAsyncThunk(
+    'auth/updateProfile',
+    async ({ displayName, photoUrl }) => {
+        try {
+            await updateProfile(auth.currentUser, {
+                displayName: displayName,
+                photoURL: photoUrl
+            })
+            return {
+                displayName: auth.currentUser.displayName,
+                photoURL: auth.currentUser.photoURL,
+            };
+        } catch (error) {
+            throw new Error(error.message);
+        }
+    }
+);
 
 const authSlice = createSlice({
     name: 'auth',
@@ -47,6 +65,18 @@ const authSlice = createSlice({
             .addCase(createUsingEmailPassword.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload
+            })
+            .addCase(updateProfileInformation.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(updateProfileInformation.fulfilled, (state, action) => {
+                state.loading = false;
+                state.uesr = action.payload;
+            })
+            .addCase(updateProfileInformation.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error;
             })
     }
 });

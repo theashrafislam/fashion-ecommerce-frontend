@@ -30,7 +30,7 @@ const Navbar = () => {
     const nagivate = useNavigate();
     // const { user, loading, userSignOut } = useAuth();
     const { user, loading } = useSelector((state) => state.auth);
-    console.log(user);
+    // console.log(user);
 
     // console.log(user);
 

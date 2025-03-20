@@ -6,13 +6,18 @@ import useAuth from '../Hooks/useAuth';
 import toast from 'react-hot-toast';
 import LoadingSpinner from '../Components/LoadingSpinner';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
+import { useDispatch, useSelector } from 'react-redux';
+import { createUsingEmailPassword, updateProfileInformation } from '../Features/Auth/useAuthSlice';
 
 const SignUp = () => {
   const axiosPublic = useAxiosPublic();
   const [imageUrl, setImageUrl] = useState(null);
   const navigate = useNavigate();
-  const { createUserEmailPassword, updateProfileInformation, userSignOut, loading } = useAuth();
+  const { createUserEmailPassword, userSignOut, loading } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth)
+  console.log(user);
 
 
   const handleFileChange = async (event) => {
@@ -42,7 +47,7 @@ const SignUp = () => {
   };
 
 
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
@@ -67,30 +72,30 @@ const SignUp = () => {
         image: data?.image
       };
 
-      await createUserEmailPassword(data?.email, data?.password);
-      await updateProfileInformation(data?.name, data?.image);
-      const response = await axiosPublic.post('/sign-up-user-info', userInfo);
+      dispatch(createUsingEmailPassword({ email: data?.email, password: data?.password }))
+        .then(result => {
+          if (result.meta.requestStatus === "fulfilled") {
+            console.log("Signup Successful", result.payload);
+            dispatch(updateProfileInformation({ displayName: data?.name, photoUrl: data?.image }))
+              .then(result => {
+                if (result.meta.requestStatus === "fulfilled") {
+                  console.log('ok');
+                  setIsSubmitting(true);
+                }
+              })
+              .catch(error => {
+                console.log(error);
+              })
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        })
 
-      if (response?.data?.data?.insertedId) {
-        toast.success('Welcome! Your account is ready.');
-        await userSignOut()
-        navigate('/sign-in');
-      }
     } catch (error) {
-      let errorMessage = "An error occurred. Please try again.";
-
-      if (error.code === "auth/email-already-in-use") {
-        errorMessage = "This email is already in use. Please use a different email.";
-      } else if (error.code === "auth/weak-password") {
-        errorMessage = "Password should be at least 6 characters.";
-      } else if (error.code === "auth/invalid-email") {
-        errorMessage = "Invalid email address.";
-      }
-
-      toast.error(errorMessage);
-    } finally {
-      setIsSubmitting(false);
+      console.log(error);
     }
+
   };
 
   return (
