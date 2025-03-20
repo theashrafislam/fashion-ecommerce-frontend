@@ -6,6 +6,8 @@ import toast from 'react-hot-toast';
 import GoogleLoginButton from '../Components/GoogleLoginButton';
 import LoadingSpinner from '../Components/LoadingSpinner';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
+import { useDispatch } from 'react-redux';
+import { createUsingEmailPassword } from '../Features/Auth/useAuthSlice';
 
 
 const SignIn = () => {
@@ -16,6 +18,7 @@ const SignIn = () => {
   const [isLoading, setLoading] = useState(false);
   const axiosSecure = useAxiosSecure();
   // console.log(location?.state?.pathname);
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -26,18 +29,19 @@ const SignIn = () => {
 
   const onSubmit = (data) => {
     setLoading(true)
-    signInEmailPassword(data?.email, data?.password)
-      .then(async () => {
-        navigate(location?.state?.pathname || '/');
-        toast.success("Login successful! Welcome back! 🎉");
-        setLoading(false);
-        // }
-      })
-      .catch(error => {
-        setLoading(false);
-        toast.error(error?.message)
-        // console.log(error);
-      })
+    // signInEmailPassword(data?.email, data?.password)
+    //   .then(async () => {
+    //     navigate(location?.state?.pathname || '/');
+    //     toast.success("Login successful! Welcome back! 🎉");
+    //     setLoading(false);
+    //     // }
+    //   })
+    //   .catch(error => {
+    //     setLoading(false);
+    //     toast.error(error?.message)
+    //     // console.log(error);
+    //   })
+    dispatch(createUsingEmailPassword({email: data?.email, password: data?.password}))
   }
 
 
