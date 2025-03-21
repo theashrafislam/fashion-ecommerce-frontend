@@ -1,23 +1,21 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../Hooks/useAuth';
 import toast from 'react-hot-toast';
 import LoadingSpinner from '../Components/LoadingSpinner';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
-import { useDispatch, useSelector } from 'react-redux';
-import { createUsingEmailPassword, updateProfileInformation } from '../Features/Auth/useAuthSlice';
+import { useDispatch } from 'react-redux';
+import { createUsingEmailPassword, updateProfileInformation, userSignOut } from '../Features/Auth/useAuthSlice';
 
 const SignUp = () => {
   const axiosPublic = useAxiosPublic();
   const [imageUrl, setImageUrl] = useState(null);
   const navigate = useNavigate();
-  const { createUserEmailPassword, userSignOut, loading } = useAuth();
+  // const { createUserEmailPassword, userSignOut, loading } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth)
-  console.log(user);
 
 
   const handleFileChange = async (event) => {
@@ -75,12 +73,16 @@ const SignUp = () => {
       dispatch(createUsingEmailPassword({ email: data?.email, password: data?.password }))
         .then(result => {
           if (result.meta.requestStatus === "fulfilled") {
-            console.log("Signup Successful", result.payload);
             dispatch(updateProfileInformation({ displayName: data?.name, photoUrl: data?.image }))
               .then(result => {
                 if (result.meta.requestStatus === "fulfilled") {
-                  console.log('ok');
-                  setIsSubmitting(true);
+                  dispatch(userSignOut())
+                    .then(result => {
+                      toast.success('Ac create success')
+                    })
+                    .catch(error => {
+                      console.log(error);
+                    })
                 }
               })
               .catch(error => {
@@ -171,7 +173,7 @@ const SignUp = () => {
           {/* Sign Up Button */}
           <div className='flex flex-col gap-4 mt-6'>
             <button
-              disabled={loading || isSubmitting}
+              disabled={isSubmitting}
               type="submit"
               className='w-full bg-black text-white text-base font-semibold py-3 px-6 rounded-lg hover:bg-red-600 transition duration-300'
             >

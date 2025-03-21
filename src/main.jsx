@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import { RouterProvider } from 'react-router-dom'
 import router from './Router/Router'
-import AuthProvider from './AuthProvider/AuthProvider'
+// import AuthProvider from './AuthProvider/AuthProvider'
 import { Toaster } from 'react-hot-toast'
 import { Provider } from 'react-redux'
 import store from './App/store'
@@ -12,10 +12,10 @@ import store from './App/store'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
-      <AuthProvider>
+      {/* <AuthProvider> */}
         <RouterProvider router={router} />
         <Toaster />
-      </AuthProvider>
+      {/* </AuthProvider> */}
     </Provider>
   </StrictMode>,
 )

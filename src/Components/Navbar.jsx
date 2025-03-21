@@ -28,9 +28,10 @@ import { useSelector } from 'react-redux';
 
 const Navbar = () => {
     const nagivate = useNavigate();
-    // const { user, loading, userSignOut } = useAuth();
-    const { user, loading } = useSelector((state) => state.auth);
+    // const { user, loading,  } = useAuth();
+    // const { user,  } = useSelector((state) => state.auth);
     // console.log(user);
+    // console.log(loading);
 
     // console.log(user);
 
@@ -85,7 +86,7 @@ const Navbar = () => {
 
                         <Link href="/contact" underline='none' color='none' className='flex items-center gap-2 ' ><MdContactMail className='text-xl' /><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>Contact</span></Link>
 
-                        {user ? <Link onClick={handleLogOut} underline='none' color='none' className='flex items-center gap-2 ' ><FiLogIn className='text-xl' /><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>Logout</span></Link> : <Link href="/sign-in" underline='none' color='none' className='flex items-center gap-2 ' ><FiLogIn className='text-xl' /><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>Login</span></Link>}
+                        {/* {user ? <Link onClick={handleLogOut} underline='none' color='none' className='flex items-center gap-2 ' ><FiLogIn className='text-xl' /><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>Logout</span></Link> : <Link href="/sign-in" underline='none' color='none' className='flex items-center gap-2 ' ><FiLogIn className='text-xl' /><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>Login</span></Link>} */}
 
                     </div>
                     {/* <Divider className='py-2'/> */}

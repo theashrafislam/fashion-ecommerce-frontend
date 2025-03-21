@@ -4,7 +4,7 @@ import useAuth from '../Hooks/useAuth';
 import toast from 'react-hot-toast';
 
 const LgMenuOptions = () => {
-    const { user, userSignOut } = useAuth();
+    // const { user, userSignOut } = useAuth();
     const nagivate = useNavigate();
 
     const handleLogOut = () => {
@@ -42,13 +42,13 @@ const LgMenuOptions = () => {
                     <span className="absolute left-0 bottom-8 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
                 </Link>
 
-                {user ? <Link onClick={handleLogOut} className='text-base text-[#212121] hover:text-red-500 relative group cursor-pointer py-8 font-medium'>
+                {/* {user ? <Link onClick={handleLogOut} className='text-base text-[#212121] hover:text-red-500 relative group cursor-pointer py-8 font-medium'>
                     Logout
                     <span className="absolute left-0 bottom-8 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
                 </Link> : <Link to="/sign-in" className='text-base text-[#212121] hover:text-red-500 relative group cursor-pointer py-8 font-medium'>
                     Login
                     <span className="absolute left-0 bottom-8 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
-                </Link>}
+                </Link>} */}
 
             </ul>
         </div>

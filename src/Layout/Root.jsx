@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import Footer from '../Components/Footer';
 import Navbar from '../Components/Navbar';
 
 const Root = () => {
+
     return (
         <section className='flex flex-col min-h-screen scroll-smooth'>
             <header className='sticky top-0 z-50 bg-white shadow-lg'>
