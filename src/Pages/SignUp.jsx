@@ -9,7 +9,8 @@ import useAxiosPublic from '../Hooks/useAxiosPublic';
 
 const SignUp = () => {
   const [imageUrl, setImageUrl] = useState(null);
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const axiosPublic = useAxiosPublic();
 
 
   const handleFileChange = async (event) => {
@@ -54,11 +55,13 @@ const SignUp = () => {
       setIsSubmitting(false);
       return;
     }
-    console.log(data);
     const userInfo = {
-      name: data?.name
+      name: data?.name,
+      email: data?.email,
+      password: data?.password,
+      image: imageUrl
     }
-    const response = useAxiosPublic('/sign-up-user-info' );
+    const response = await axiosPublic.post('/sign-up-user-info', userInfo);
     console.log(response);
     setIsSubmitting(false);
 
