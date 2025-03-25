@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import LoadingSpinner from '../Components/LoadingSpinner';
+import useAxiosPublic from '../Hooks/useAxiosPublic';
 
 
 const SignUp = () => {
@@ -53,8 +54,12 @@ const SignUp = () => {
       setIsSubmitting(false);
       return;
     }
-
-    console.log('i am ok!');
+    console.log(data);
+    const userInfo = {
+      name: data?.name
+    }
+    const response = useAxiosPublic('/sign-up-user-info' );
+    console.log(response);
     setIsSubmitting(false);
 
   };
