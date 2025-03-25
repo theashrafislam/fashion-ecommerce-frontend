@@ -1,23 +1,23 @@
 import React from 'react';
 import { FcGoogle } from "react-icons/fc";
-import useAuth from '../Hooks/useAuth';
+// import useAuth from '../Hooks/useAuth';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 const GoogleLoginButton = () => {
 
-    const { signInWithGoogle } = useAuth();
+    // const { signInWithGoogle } = useAuth();
     const nagivate = useNavigate();
 
     const handleGoogleLogin = async () => {
-        await signInWithGoogle()
-            .then(() => {
-                toast.success("Login successful! Welcome back! 🎉");
-                nagivate('/')
-            })
-            .catch(error => {
-                toast.error(error);
-            })
+        // await signInWithGoogle()
+            // .then(() => {
+            //     toast.success("Login successful! Welcome back! 🎉");
+            //     nagivate('/')
+            // })
+            // .catch(error => {
+            //     toast.error(error);
+            // })
     }
 
     return (

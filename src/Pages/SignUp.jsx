@@ -1,21 +1,14 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
-import useAuth from '../Hooks/useAuth';
+import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import LoadingSpinner from '../Components/LoadingSpinner';
-import useAxiosPublic from '../Hooks/useAxiosPublic';
-import { useDispatch } from 'react-redux';
-import { createUsingEmailPassword, updateProfileInformation, userSignOut } from '../Features/Auth/useAuthSlice';
+
 
 const SignUp = () => {
-  const axiosPublic = useAxiosPublic();
   const [imageUrl, setImageUrl] = useState(null);
-  const navigate = useNavigate();
-  // const { createUserEmailPassword, userSignOut, loading } = useAuth();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const dispatch = useDispatch();
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
 
   const handleFileChange = async (event) => {
@@ -61,42 +54,8 @@ const SignUp = () => {
       return;
     }
 
-    try {
-      data.image = imageUrl;
-      const userInfo = {
-        name: data?.name,
-        email: data?.email,
-        password: data?.password,
-        image: data?.image
-      };
-
-      dispatch(createUsingEmailPassword({ email: data?.email, password: data?.password }))
-        .then(result => {
-          if (result.meta.requestStatus === "fulfilled") {
-            dispatch(updateProfileInformation({ displayName: data?.name, photoUrl: data?.image }))
-              .then(result => {
-                if (result.meta.requestStatus === "fulfilled") {
-                  dispatch(userSignOut())
-                    .then(result => {
-                      toast.success('Ac create success')
-                    })
-                    .catch(error => {
-                      console.log(error);
-                    })
-                }
-              })
-              .catch(error => {
-                console.log(error);
-              })
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        })
-
-    } catch (error) {
-      console.log(error);
-    }
+    console.log('i am ok!');
+    setIsSubmitting(false);
 
   };
 
@@ -185,7 +144,7 @@ const SignUp = () => {
               Already have an account?{' '}
               <Link
                 to="/sign-in"
-                className='text-[#522E2E] hover:text-red-600 hover:underline transition duration-300'
+                className='text-[#522E2E] hover:text-red-600 hover:underline font-semibold transition duration-300'
               >
                 Login
               </Link>

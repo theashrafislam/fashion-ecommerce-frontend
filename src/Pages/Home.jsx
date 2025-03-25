@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import ActivePage from '../Components/ActivePage';
-import useAuth from '../Hooks/useAuth';
-import useAxiosPublic from '../Hooks/useAxiosPublic';
+// import useAuth from '../Hooks/useAuth';
+// import useAxiosPublic from '../Hooks/useAxiosPublic';
 import axios from 'axios';
-import useAxiosSecure from '../Hooks/useAxiosSecure';
+// import useAxiosSecure from '../Hooks/useAxiosSecure';
 import Carousel from '../Components/Home/Carousel';
 import PromotionalBanners from '../Components/Home/PromotionalBanners';
 import ServiceFeatures from '../Components/Home/ServiceFeatures';
@@ -13,8 +13,8 @@ import DiscountBanner from '../Components/Home/DiscountBanner';
 import Clients from '../Components/Home/Clients';
 
 const Home = () => {
-    const axiosSecure = useAxiosSecure();
-    const { user } = useAuth();
+    // const axiosSecure = useAxiosSecure();
+    // const { user } = useAuth();
     // useEffect(() => {
     //     axiosSecure.get('/get-all')
     //         .then(res => {

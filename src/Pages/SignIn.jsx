@@ -1,47 +1,19 @@
-import React, { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form"
-import useAuth from '../Hooks/useAuth';
-import toast from 'react-hot-toast';
+
 import GoogleLoginButton from '../Components/GoogleLoginButton';
 import LoadingSpinner from '../Components/LoadingSpinner';
-import useAxiosSecure from '../Hooks/useAxiosSecure';
-import { useDispatch } from 'react-redux';
-import { createUsingEmailPassword } from '../Features/Auth/useAuthSlice';
+
 
 
 const SignIn = () => {
 
-  const location = useLocation();
-  const { signInEmailPassword } = useAuth();
-  const navigate = useNavigate();
-  const [isLoading, setLoading] = useState(false);
-  const axiosSecure = useAxiosSecure();
-  // console.log(location?.state?.pathname);
-  const dispatch = useDispatch();
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm()
+  const { register, handleSubmit, formState: { errors } } = useForm()
 
-  const onSubmit = (data) => {
-    setLoading(true)
-    // signInEmailPassword(data?.email, data?.password)
-    //   .then(async () => {
-    //     navigate(location?.state?.pathname || '/');
-    //     toast.success("Login successful! Welcome back! 🎉");
-    //     setLoading(false);
-    //     // }
-    //   })
-    //   .catch(error => {
-    //     setLoading(false);
-    //     toast.error(error?.message)
-    //     // console.log(error);
-    //   })
-    dispatch(createUsingEmailPassword({email: data?.email, password: data?.password}))
+  const onSubmit = async (data) => {
+    // console.log('i am ok!');
   }
 
 
@@ -81,11 +53,12 @@ const SignIn = () => {
           </div>
           <div className='flex flex-col gap-4 mt-6'>
             <button
-              disabled={isLoading}
+              // disabled={isLoading}
               type="submit"
               className='w-full bg-black text-white text-base font-semibold py-3 px-6 rounded-lg hover:bg-red-600 transition duration-300'
             >
-              {isLoading ? <LoadingSpinner /> : 'Login'}
+              {/* {isLoading ? <LoadingSpinner /> : 'Login'} */}
+              login
             </button>
             <Link
               to="/sign-up"

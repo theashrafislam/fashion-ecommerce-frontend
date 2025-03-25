@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FaTachometerAlt, FaShoppingCart, FaDownload, FaCreditCard, FaMapMarkerAlt, FaUser, FaSignOutAlt } from 'react-icons/fa';
 import ActivePage from '../Components/ActivePage';
 import AccountDetails from '../Components/ProfileTabsContent/AccountDetails';
-import useAuth from '../Hooks/useAuth';
+// import useAuth from '../Hooks/useAuth';
 import toast from 'react-hot-toast';
 import Address from '../Components/ProfileTabsContent/Address';
 import PaymentMethod from '../Components/ProfileTabsContent/PaymentMethod';

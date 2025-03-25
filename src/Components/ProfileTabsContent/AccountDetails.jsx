@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { CgProfile } from "react-icons/cg";
-import useAuth from '../../Hooks/useAuth';
+// import useAuth from '../../Hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
-import useAxiosSecure from '../../Hooks/useAxiosSecure';
+// import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import LoadingSpinner from '../LoadingSpinner';
 import toast from 'react-hot-toast';
 

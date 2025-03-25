@@ -20,7 +20,7 @@ import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import Link from '@mui/material/Link';
 import LgMenuOptions from './LgMenuOptions';
-import useAuth from '../Hooks/useAuth';
+// import useAuth from '../Hooks/useAuth';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import ProfileIcon from './Icons/ProfileIcon';
@@ -29,7 +29,7 @@ import { useSelector } from 'react-redux';
 const Navbar = () => {
     const nagivate = useNavigate();
     // const { user, loading,  } = useAuth();
-    // const { user,  } = useSelector((state) => state.auth);
+    // const { user  } = useSelector((state) => state.auth);
     // console.log(user);
     // console.log(loading);
 

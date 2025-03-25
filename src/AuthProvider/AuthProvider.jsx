@@ -59,10 +59,10 @@ const AuthProvider = ({ children }) => {
             const email = currentUser?.email || user?.email;
             if (currentUser) {
                 // axios.get(`http://localhost:3000/jwt?email=${email}`, { withCredentials: true })
-                // axiosPublic.get(`/jwt?email=${email}`)
-                //     .then(res => {
-                //         // console.log(res);
-                //     })
+                axiosPublic.get(`/jwt?email=${email}`)
+                    .then(res => {
+                        // console.log(res);
+                    })
             } else {
                 // axios.get(`http://localhost:3000/token-remove`, { withCredentials: true })
                 axiosPublic.get(`/token-remove`)
