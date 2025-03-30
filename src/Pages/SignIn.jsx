@@ -4,16 +4,20 @@ import { useForm } from "react-hook-form"
 
 import GoogleLoginButton from '../Components/GoogleLoginButton';
 import LoadingSpinner from '../Components/LoadingSpinner';
+import useAxiosPublic from '../Hooks/useAxiosPublic';
 
 
 
 const SignIn = () => {
+  const useAxiosPublic = useAxiosPublic();
 
 
   const { register, handleSubmit, formState: { errors } } = useForm()
 
   const onSubmit = async (data) => {
-    // console.log('i am ok!');
+    console.log(data);
+    const response = await useAxiosPublic.post('/login', userInfo);
+    console.log(response);
   }
 
 
