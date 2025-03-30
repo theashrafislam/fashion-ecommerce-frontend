@@ -23,8 +23,11 @@ const SignIn = () => {
       password: data?.password
     }
     try {
-      const response = await axiosPublic.post('/login', userInfo);
+      const response = await axiosPublic.post('/api/login', userInfo);
       console.log(response);
+      if(response?.status === 200){
+        toast.success(response?.data?.message)
+      }
     } catch (error) {
       if (error?.response) {
         if (error?.response?.status === 401) {
