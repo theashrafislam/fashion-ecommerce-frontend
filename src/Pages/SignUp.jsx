@@ -65,6 +65,7 @@ const SignUp = () => {
       const response = await axiosPublic.post('/sign-up-user-info', userInfo);
       if (response?.data?.data?.insertedId) {
         toast.success(response?.data?.message);
+        
       } else {
         setIsSubmitting(false);
         toast.error("Something went wrong. Please try again.");

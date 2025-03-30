@@ -5,19 +5,41 @@ import { useForm } from "react-hook-form"
 import GoogleLoginButton from '../Components/GoogleLoginButton';
 import LoadingSpinner from '../Components/LoadingSpinner';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
+import toast from 'react-hot-toast';
 
 
 
 const SignIn = () => {
-  const useAxiosPublic = useAxiosPublic();
+  const axiosPublic = useAxiosPublic();
 
 
   const { register, handleSubmit, formState: { errors } } = useForm()
 
   const onSubmit = async (data) => {
-    console.log(data);
-    const response = await useAxiosPublic.post('/login', userInfo);
-    console.log(response);
+    const userInfo = {
+      email: data?.email,
+      password: data?.password
+    }
+    try {
+      const response = await axiosPublic.post('/login', userInfo);
+      console.log(response);
+    } catch (error) {
+      if (error?.response) {
+        if (error?.response?.status === 401) {
+          toast.error(error?.response?.data?.message)
+        }
+        else if (error?.response?.status === 404) {
+          toast.error(error?.response?.data?.message)
+        }
+        else {
+          toast.error(error?.response?.data?.message || "Something went wrong.");
+        }
+      } else {
+        toast.error("Network error. Please check your connection.");
+      }
+    } finally{
+      
+    }
   }
 
 
