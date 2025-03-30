@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 
@@ -11,11 +11,13 @@ import toast from 'react-hot-toast';
 
 const SignIn = () => {
   const axiosPublic = useAxiosPublic();
+  const [loading, setLoading] = useState(false);
 
 
   const { register, handleSubmit, formState: { errors } } = useForm()
 
   const onSubmit = async (data) => {
+    setLoading(true);
     const userInfo = {
       email: data?.email,
       password: data?.password
@@ -26,19 +28,23 @@ const SignIn = () => {
     } catch (error) {
       if (error?.response) {
         if (error?.response?.status === 401) {
-          toast.error(error?.response?.data?.message)
+          toast.error(error?.response?.data?.message);
+          setLoading(false);
         }
         else if (error?.response?.status === 404) {
-          toast.error(error?.response?.data?.message)
+          toast.error(error?.response?.data?.message);
+          setLoading(false);
         }
         else {
           toast.error(error?.response?.data?.message || "Something went wrong.");
+          setLoading(false);
         }
       } else {
         toast.error("Network error. Please check your connection.");
+        setLoading(false);
       }
     } finally{
-      
+      setLoading(false);
     }
   }
 
@@ -83,8 +89,7 @@ const SignIn = () => {
               type="submit"
               className='w-full bg-black text-white text-base font-semibold py-3 px-6 rounded-lg hover:bg-red-600 transition duration-300'
             >
-              {/* {isLoading ? <LoadingSpinner /> : 'Login'} */}
-              login
+              {loading ? <LoadingSpinner /> : 'Sign In'}
             </button>
             <Link
               to="/sign-up"
