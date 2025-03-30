@@ -61,10 +61,21 @@ const SignUp = () => {
       password: data?.password,
       image: imageUrl
     }
-    const response = await axiosPublic.post('/sign-up-user-info', userInfo);
-    console.log(response);
-    setIsSubmitting(false);
-
+    try {
+      const response = await axiosPublic.post('/sign-up-user-info', userInfo);
+      if (response?.data?.data?.insertedId) {
+        toast.success(response?.data?.message);
+      } else {
+        setIsSubmitting(false);
+        toast.error("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      if (error?.response) {
+        toast.error(error?.response?.data?.message)
+      }
+    } finally {
+      setIsSubmitting(false)
+    }
   };
 
   return (
