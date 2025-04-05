@@ -13,8 +13,6 @@ const SignIn = () => {
   const axiosPublic = useAxiosPublic();
   const [loading, setLoading] = useState(false);
 
-  //today first commit
-  //today no working
 
   const { register, handleSubmit, formState: { errors } } = useForm()
 

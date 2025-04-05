@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import LoadingSpinner from '../Components/LoadingSpinner';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
@@ -11,6 +11,7 @@ const SignUp = () => {
   const [imageUrl, setImageUrl] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
 
 
   const handleFileChange = async (event) => {
@@ -40,7 +41,7 @@ const SignUp = () => {
   };
 
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
@@ -65,7 +66,8 @@ const SignUp = () => {
       const response = await axiosPublic.post('/sign-up-user-info', userInfo);
       if (response?.data?.data?.insertedId) {
         toast.success(response?.data?.message);
-        
+        reset();
+        navigate('/sign-in')
       } else {
         setIsSubmitting(false);
         toast.error("Something went wrong. Please try again.");
