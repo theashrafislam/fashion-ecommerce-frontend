@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 
 import GoogleLoginButton from '../Components/GoogleLoginButton';
@@ -12,9 +12,10 @@ import toast from 'react-hot-toast';
 const SignIn = () => {
   const axiosPublic = useAxiosPublic();
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
 
-  const { register, handleSubmit, formState: { errors } } = useForm()
+  const { register, handleSubmit, reset, formState: { errors } } = useForm()
 
   const onSubmit = async (data) => {
     setLoading(true);
@@ -26,7 +27,9 @@ const SignIn = () => {
       const response = await axiosPublic.post('/api/login', userInfo);
       console.log(response);
       if(response?.status === 200){
-        toast.success(response?.data?.message)
+        toast.success(response?.data?.message);
+        reset();
+        navigate('/')
       }
     } catch (error) {
       if (error?.response) {
