@@ -25,7 +25,6 @@ const SignIn = () => {
     }
     try {
       const response = await axiosPublic.post('/api/login', userInfo);
-      console.log(response);
       if(response?.status === 200){
         toast.success(response?.data?.message);
         reset();

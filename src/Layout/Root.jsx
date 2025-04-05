@@ -2,18 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Footer from '../Components/Footer';
 import Navbar from '../Components/Navbar';
+import { useDispatch, useSelector } from 'react-redux';
+import { checkAuth } from '../Features/Auth/authActions';
 
 const Root = () => {
 
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const dispatch = useDispatch();
+    const { user, loading } = useSelector(state => state.auth);
 
     useEffect(() => {
-        const fetchuser = async () => {
-            
-        };
-        fetchuser()
-    }, [])
+        dispatch(checkAuth());
+    }, [dispatch]);
+    console.log(user);
+
+    if (loading) return <p>Loading...</p>;
 
     return (
         <section className='flex flex-col min-h-screen scroll-smooth'>
