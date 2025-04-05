@@ -39,6 +39,9 @@
 // export default useAxiosSecure;
 
 import axios from "axios";
+import React, { useEffect } from "react";
+import useAxiosPublic from "./useAxiosPublic";
+import { useNavigate } from "react-router-dom";
 
 const axiosSecure = axios.create({
     baseURL: 'http://localhost:3000',
@@ -46,6 +49,23 @@ const axiosSecure = axios.create({
 })
 
 const useAxiosSecure = () => {
+    const navigate = useNavigate();
+    const axiosPublic = useAxiosPublic();
+
+
+    useEffect(() => {
+        axiosSecure.interceptors.response.use(function (response) {
+            return response;
+        }, async (error) =>  {
+            if (error?.response?.status === 401 || error?.response?.status === 403) {
+                const response = await axiosPublic.get('/token-remove');
+                if(response?.data?.status === 200){
+                    navigate('navigate')
+                }
+            }
+        });
+    }, [])
+
     return axiosSecure;
 };
 
