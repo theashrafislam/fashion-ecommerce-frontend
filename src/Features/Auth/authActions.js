@@ -4,9 +4,7 @@ const axiosSecure = useAxiosSecure();
 
 export const checkAuth  = () => async (dispatch) => {
     try {
-        console.log('call it');
-        const res =  axiosSecure.get('/api/current-user');
-        console.log(res);
+        const res = await axiosSecure.get('/api/current-user');
         dispatch(setUser(res?.data))
     } catch (error) {
         dispatch(clearUser())
