@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 
 import GoogleLoginButton from '../Components/GoogleLoginButton';
@@ -15,6 +15,8 @@ const SignIn = () => {
   // const axiosPublic = useAxiosPublic();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location);
   const { signInEmailPassword } = useAuth();
 
 
@@ -31,7 +33,7 @@ const SignIn = () => {
         .then(res => {
           if (res.user.uid) {
             toast.success("Logged in successfully 🚀");
-            navigate('/')
+            navigate(location?.state?.pathname || '/')
           }
         })
         .catch(error => {

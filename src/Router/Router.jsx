@@ -12,6 +12,7 @@ import Shop from "../Pages/Shop";
 import Cart from "../Pages/Cart";
 import ProductDetails from "../Pages/ProductDetails";
 import Wishlist from "../Pages/Wishlist";
+import PrivateRoute from "./PrivateRoute";
 
 let router = createBrowserRouter([
     {
@@ -41,7 +42,7 @@ let router = createBrowserRouter([
             },
             {
                 path: '/in/:email',
-                element: <Profile />
+                element: <PrivateRoute><Profile /></PrivateRoute>
             },
             {
                 path: '/shop',
