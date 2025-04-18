@@ -7,7 +7,7 @@ import SignUp from "../Pages/SignUp";
 import About from "../Pages/About";
 import Contact from "../Pages/Contact";
 import Profile from "../Pages/Profile";
-import PrivateRoute from "./PrivateRoute";
+// import PrivateRoute from "./PrivateRoute";
 import Shop from "../Pages/Shop";
 import Cart from "../Pages/Cart";
 import ProductDetails from "../Pages/ProductDetails";

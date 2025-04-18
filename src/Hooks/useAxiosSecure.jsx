@@ -57,10 +57,10 @@ const useAxiosSecure = () => {
         axiosSecure.interceptors.response.use(function (response) {
             return response;
         }, async (error) =>  {
-            if (error?.response?.status === 401 || error?.response?.status === 403) {
+            if (error?.response?.status === 403) {
                 const response = await axiosPublic.get('/token-remove');
                 if(response?.data?.status === 200){
-                    navigate('navigate')
+                    navigate('/sign-in')
                 }
             }
         });

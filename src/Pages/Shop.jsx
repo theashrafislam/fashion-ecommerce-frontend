@@ -8,6 +8,7 @@ import Categories from '../Components/Shop/Categories';
 import Tags from '../Components/Shop/Tags';
 import ProductCard from '../Components/Products/ProductCard';
 import { Pagination, Stack } from '@mui/material';
+import PriceFilter from '../Components/Shop/PriceFilter';
 
 
 
@@ -35,6 +36,8 @@ const Shop = () => {
                         {/* Menu Categories */}
                         <MenuCategories />
 
+                        {/* price filter  */}
+                        <PriceFilter />
 
                         {/* Categories */}
                         <Categories />
