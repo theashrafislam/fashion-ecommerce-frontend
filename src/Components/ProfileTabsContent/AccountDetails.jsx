@@ -1,126 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { CgProfile } from "react-icons/cg";
-// import useAuth from '../../Hooks/useAuth';
+import useAuth from '../../Hooks/useAuth';
 // import { useQuery } from '@tanstack/react-query';
 // import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import LoadingSpinner from '../LoadingSpinner';
 import toast from 'react-hot-toast';
 
 const AccountDetails = () => {
-    const { user, loading, changePassword } = useAuth();
-    const axiosSecure = useAxiosSecure();
-
-    const { data: accountInfo, isLoading, isError } = useQuery({
-        queryKey: ['accountInfo'],
-        queryFn: async () => {
-            const response = axiosSecure.get(`/user-info?email=${user?.email}`);
-            return response;
-        }
-    })
-
-    const [name, setName] = useState("");
-    const [newPassword, setNewPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const [isChanged, setIsChanged] = useState(false);
-
-    useEffect(() => {
-        setName(accountInfo?.data?.data?.name)
-    }, [accountInfo]);
-
-    useEffect(() => {
-        const orginalName = accountInfo?.data?.data?.name || "";
-        const isNameChanged = name !== orginalName;
-        const isPassChanged = newPassword.length > 0;
-        setIsChanged(isPassChanged || isNameChanged);
-    }, [name, newPassword, confirmPassword, accountInfo]);
+    
+    const {user, loading} = useAuth();
 
 
-    const handleFormSubmit = (e) => {
-        e.preventDefault();
-        const originalName = accountInfo?.data?.data?.name || "";
-        const isNameChanged = name !== originalName;
-        const isPassChanged = newPassword.length > 0;
-
-        if (isPassChanged) {
-            if (newPassword.length < 6) {
-                return toast.error("Password must be at least 6 characters long!");
-            }
-            if (newPassword !== confirmPassword) {
-                return toast.error("Passwords do not match!");
-            }
-        }
-
-        if (isNameChanged && isPassChanged) {
-            console.log(accountInfo?.data?.data?._id);
-            changePassword(newPassword)
-                .then(() => {
-                    axiosSecure.patch(`/update-user-info?id=${accountInfo?.data?.data?._id}`, { name, password: newPassword })
-                        .then(res => {
-                            if (res.status === 200) {
-                                toast.success('Name and password changed successfully')
-                            }
-                        })
-                        .catch(error => {
-                            console.log(error);
-                        })
-                })
-                .catch(error => {
-                    const errorCode = error?.code || error?.message || "unknown_error";
-                    if (errorCode === 'auth/requires-recent-login') {
-                        toast.error("Please re-login and try again.");
-                    };
-                })
-        } else if (isNameChanged) {
-            axiosSecure.patch(`/update-user-info?id=${accountInfo?.data?.data?._id}`, { name })
-                .then(res => {
-                    if (res.status === 200) {
-                        toast.success('Name changed successfully')
-                    }
-                })
-                .catch(error => {
-                    console.log(error);
-                    toast.error(error.message)
-                })
-        } else if (isPassChanged) {
-            changePassword(newPassword)
-                .then(() => {
-                    axiosSecure.patch(`/update-user-info?id=${accountInfo?.data?.data?._id}`, { password: newPassword })
-                        .then(res => {
-                            if (res.status === 200) {
-                                toast.success('Password changed successfully')
-                            }
-                        })
-                        .catch(error => {
-                            console.log(error);
-                            toast.error(error.message)
-                        })
-                })
-                .catch(error => {
-                    const errorCode = error?.code || error?.message || "unknown_error";
-                    if (errorCode === 'auth/requires-recent-login') {
-                        toast.error("Please re-login and try again.");
-                    }
-                })
-        }
-    }
-
-
-    if (isLoading) {
+    if (loading) {
         return <LoadingSpinner />
     }
     return (
         <div>
             <h1 className="font-primary text-2xl font-medium pb-3 mb-3 border-b-2 border-dotted border-[#E8E8E8]">Account Details</h1>
             <form
-                onSubmit={handleFormSubmit}
+                // onSubmit={handleFormSubmit}
                 className="text-[#666666] font-secondary">
                 {/* profile photo  */}
                 <div className='flex justify-center items-center py-6'>
                     <div className="relative w-28 h-28">
                         <img
 
-                            src={accountInfo?.data?.data?.image || "/default-avatar.png"}
-                            alt={accountInfo?.data?.data?.name}
+                            src={"/default-avatar.png"}
+                            // alt={accountInfo?.data?.data?.name}
                             className="w-full h-full object-cover rounded-full border-2 border-gray-300"
                         />
                         <label
@@ -141,7 +47,6 @@ const AccountDetails = () => {
                             </label>
                             <input
                                 readOnly
-                                value={accountInfo?.data?.data?.name.split(' ')[0]}
                                 type="text"
                                 id="firstName"
                                 placeholder="First Name"
@@ -154,7 +59,7 @@ const AccountDetails = () => {
                             </label>
                             <input
                                 readOnly
-                                value={accountInfo?.data?.data?.name.split(" ").slice(1).join(" ")}
+                                // value={accountInfo?.data?.data?.name.split(" ").slice(1).join(" ")}
                                 type="text"
                                 id="lastName"
                                 placeholder="Last Name"
@@ -168,8 +73,8 @@ const AccountDetails = () => {
                             Display Name
                         </label>
                         <input
-                            onChange={(e) => setName(e.target.value)}
-                            defaultValue={accountInfo?.data?.data?.name}
+                            // onChange={(e) => setName(e.target.value)}
+                            // defaultValue={accountInfo?.data?.data?.name}
                             type="text"
                             id="displayName"
                             placeholder="Display Name"
@@ -183,7 +88,7 @@ const AccountDetails = () => {
                         </label>
                         <input
                             readOnly
-                            value={accountInfo?.data?.data?.email}
+                            // value={accountInfo?.data?.data?.email}
                             type="email"
                             id="emailAddress"
                             placeholder="Email Address"
@@ -199,7 +104,7 @@ const AccountDetails = () => {
                                     New Password
                                 </label>
                                 <input
-                                    onChange={(e) => setNewPassword(e.target.value)}
+                                    // onChange={(e) => setNewPassword(e.target.value)}
                                     type="password"
                                     id="newPassword"
                                     placeholder="New Password"
@@ -211,8 +116,8 @@ const AccountDetails = () => {
                                     Confirm Password
                                 </label>
                                 <input
-                                    disabled={newPassword.length === 0}
-                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                    // disabled={newPassword.length === 0}
+                                    // onChange={(e) => setConfirmPassword(e.target.value)}
                                     type="password"
                                     id="confirmPassword"
                                     placeholder="Confirm Password"
@@ -224,7 +129,7 @@ const AccountDetails = () => {
                 </div>
 
                 <button
-                    disabled={!isChanged}
+                    // disabled={!isChanged}
                     className='w-full mt-4 md:w-fit px-10 py-3 bg-black text-white hover:bg-red-500 hover:text-white font-semibold font-primary'>Save Changes</button>
             </form>
         </div>
