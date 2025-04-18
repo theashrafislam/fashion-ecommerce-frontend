@@ -3,6 +3,7 @@ import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWith
 import { app } from '../Firebase/firebase.config';
 import { GoogleAuthProvider } from "firebase/auth";
 import useAxiosPublic from '../Hooks/useAxiosPublic';
+import axios from 'axios';
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
