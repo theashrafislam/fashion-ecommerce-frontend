@@ -5,10 +5,35 @@ import useAuth from '../../Hooks/useAuth';
 // import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import LoadingSpinner from '../LoadingSpinner';
 import toast from 'react-hot-toast';
+// import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUser } from '../../Features/user/userSlice';
 
 const AccountDetails = () => {
-    
-    const {user, loading} = useAuth();
+
+    const { user, } = useAuth();
+    // const axiosSecure = useAxiosSecure();
+    // console.log('hello');
+
+    // useEffect(() => {
+    //     const getUserInfo = async () => {
+    //         const res = await axiosSecure.get(`/user-info?email=${user?.email}`);
+    //         console.log(res?.data);
+    //     };
+    //     getUserInfo();
+    // }, [user, ])
+
+    const dispatch = useDispatch();
+    const { userInfo, loading, error } = useSelector((state) => state.user);
+    console.log(userInfo);
+    console.log(loading);
+    console.log(error);
+
+    useEffect(() => {
+        if (user) {
+            dispatch(fetchUser(user?.email));
+        }
+    }, [dispatch, user]);
 
 
     if (loading) {
@@ -40,7 +65,7 @@ const AccountDetails = () => {
                 {/* input feilds  */}
                 <div className="w-full">
                     {/* First Name and Last Name */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <div>
                             <label htmlFor="firstName" className="block text-base text-[#66666]  font-medium">
                                 First Name
@@ -66,7 +91,7 @@ const AccountDetails = () => {
                                 className="mt-1 block w-full p-4 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500"
                             />
                         </div>
-                    </div>
+                    </div> */}
                     {/* Display Name */}
                     <div className="mb-4">
                         <label htmlFor="displayName" className="block text-base text-[#66666] font-medium">

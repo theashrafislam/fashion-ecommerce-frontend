@@ -25,7 +25,8 @@ const Profile = () => {
     const { email } = useParams();
     const [activeTab, setActiveTab] = useState('Dashboard');
     const { user, userSignOut } = useAuth();
-    console.log(user);
+    // console.log(user);
+    // console.log(email);
 
 
     const handleLogout = () => {
