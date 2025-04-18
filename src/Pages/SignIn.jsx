@@ -7,13 +7,15 @@ import LoadingSpinner from '../Components/LoadingSpinner';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
 import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet-async';
+import useAuth from '../Hooks/useAuth';
 
 
 
 const SignIn = () => {
-  const axiosPublic = useAxiosPublic();
+  // const axiosPublic = useAxiosPublic();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { signInEmailPassword } = useAuth();
 
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm()
@@ -25,30 +27,19 @@ const SignIn = () => {
       password: data?.password
     }
     try {
-      const response = await axiosPublic.post('/api/login', userInfo);
-      if (response?.status === 200) {
-        toast.success(response?.data?.message);
-        reset();
-        navigate('/')
-      }
+      signInEmailPassword(data?.email, data?.password)
+        .then(res => {
+          console.log(res);
+          if (res.user.uid) {
+            toast.success("Logged in successfully 🚀");
+            navigate('/')
+          }
+        })
+        .catch(error => {
+          toast.error("Oops! Something went wrong.");
+        })
     } catch (error) {
-      if (error?.response) {
-        if (error?.response?.status === 401) {
-          toast.error(error?.response?.data?.message);
-          setLoading(false);
-        }
-        else if (error?.response?.status === 404) {
-          toast.error(error?.response?.data?.message);
-          setLoading(false);
-        }
-        else {
-          toast.error(error?.response?.data?.message || "Something went wrong.");
-          setLoading(false);
-        }
-      } else {
-        toast.error("Network error. Please check your connection.");
-        setLoading(false);
-      }
+      toast.error("Oops! Something went wrong.");
     } finally {
       setLoading(false);
     }

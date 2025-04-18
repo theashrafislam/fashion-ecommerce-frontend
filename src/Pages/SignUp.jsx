@@ -14,7 +14,7 @@ const SignUp = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
-  const { createUserEmailPassword, userSignOut } = useAuth();
+  const { createUserEmailPassword, userSignOut, updateProfileInformation } = useAuth();
 
 
   const handleFileChange = async (event) => {
@@ -71,11 +71,17 @@ const SignUp = () => {
         createUserEmailPassword(data?.email, data?.password)
           .then(res => {
             if (res?.user?.uid) {
-              userSignOut()
+              updateProfileInformation(data?.name, imageUrl)
                 .then(() => {
-                  reset();
-                  toast.success(response?.data?.message);
-                  navigate('/sign-in');
+                  userSignOut()
+                    .then(() => {
+                      reset();
+                      toast.success(response?.data?.message);
+                      navigate('/sign-in');
+                    })
+                    .catch(error => {
+                      toast.error("Something went wrong. Please try again.");
+                    })
                 })
                 .catch(error => {
                   toast.error("Something went wrong. Please try again.");
