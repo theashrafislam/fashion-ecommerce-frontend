@@ -29,7 +29,6 @@ const SignIn = () => {
     try {
       signInEmailPassword(data?.email, data?.password)
         .then(res => {
-          console.log(res);
           if (res.user.uid) {
             toast.success("Logged in successfully 🚀");
             navigate('/')

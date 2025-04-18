@@ -85,8 +85,10 @@ const Navbar = () => {
                         <Link href="/about" underline='none' color='none' className='flex items-center gap-2 ' ><IoMdInformationCircleOutline className='text-xl' /><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>About</span></Link>
 
                         <Link href="/contact" underline='none' color='none' className='flex items-center gap-2 ' ><MdContactMail className='text-xl' /><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>Contact</span></Link>
+{/* 
+                        {user ? <Link onClick={handleLogOut} underline='none' color='none' className='flex items-center gap-2 ' ><FiLogIn className='text-xl' /><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>Logout</span></Link> : <Link href="/sign-in" underline='none' color='none' className='flex items-center gap-2 ' ><FiLogIn className='text-xl' /><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>Login</span></Link>}
 
-                        {/* {user ? <Link onClick={handleLogOut} underline='none' color='none' className='flex items-center gap-2 ' ><FiLogIn className='text-xl' /><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>Logout</span></Link> : <Link href="/sign-in" underline='none' color='none' className='flex items-center gap-2 ' ><FiLogIn className='text-xl' /><span className='text-base hover:text-red-500 relative group cursor-pointer font-medium text-[#212121]'>Login</span></Link>} */}
+                        <button>hello</button> */}
 
                     </div>
                     {/* <Divider className='py-2'/> */}
