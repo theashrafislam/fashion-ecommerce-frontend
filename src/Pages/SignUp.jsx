@@ -5,6 +5,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import LoadingSpinner from '../Components/LoadingSpinner';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
+import { Helmet } from 'react-helmet-async';
+import useAuth from '../Hooks/useAuth';
 
 
 const SignUp = () => {
@@ -12,6 +14,7 @@ const SignUp = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
+  const { createUserEmailPassword, userSignOut } = useAuth();
 
 
   const handleFileChange = async (event) => {
@@ -65,9 +68,23 @@ const SignUp = () => {
     try {
       const response = await axiosPublic.post('/sign-up-user-info', userInfo);
       if (response?.data?.data?.insertedId) {
-        toast.success(response?.data?.message);
-        reset();
-        navigate('/sign-in')
+        createUserEmailPassword(data?.email, data?.password)
+          .then(res => {
+            if (res?.user?.uid) {
+              userSignOut()
+                .then(() => {
+                  reset();
+                  toast.success(response?.data?.message);
+                  navigate('/sign-in');
+                })
+                .catch(error => {
+                  toast.error("Something went wrong. Please try again.");
+                })
+            }
+          })
+          .catch(error => {
+            console.log(error);
+          })
       } else {
         setIsSubmitting(false);
         toast.error("Something went wrong. Please try again.");
@@ -83,6 +100,9 @@ const SignUp = () => {
 
   return (
     <section className='font-primary min-h-screen flex items-center justify-center bg-gradient-to-r from-[#F9F9F9] to-[#E8E8E8]'>
+      <Helmet>
+        <title>Create Account | FashionEra</title>
+      </Helmet>
       <div className='max-w-md w-full mx-4 bg-white rounded-lg shadow-lg p-8'>
         <h1 className='text-3xl text-[#522E2E] mb-5 text-center font-bold'>Sign Up</h1>
         <p className='text-sm text-[#66668B] text-center font-secondary mb-8'>

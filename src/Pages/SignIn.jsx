@@ -6,6 +6,7 @@ import GoogleLoginButton from '../Components/GoogleLoginButton';
 import LoadingSpinner from '../Components/LoadingSpinner';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
 
 
 
@@ -25,7 +26,7 @@ const SignIn = () => {
     }
     try {
       const response = await axiosPublic.post('/api/login', userInfo);
-      if(response?.status === 200){
+      if (response?.status === 200) {
         toast.success(response?.data?.message);
         reset();
         navigate('/')
@@ -48,7 +49,7 @@ const SignIn = () => {
         toast.error("Network error. Please check your connection.");
         setLoading(false);
       }
-    } finally{
+    } finally {
       setLoading(false);
     }
   }
@@ -56,6 +57,9 @@ const SignIn = () => {
 
   return (
     <section className='font-primary min-h-screen flex items-center justify-center bg-gradient-to-r from-[#F9F9F9] to-[#E8E8E8]'>
+      <Helmet>
+        <title>Sign In | FashionEra</title>
+      </Helmet>
       <div className='max-w-md w-full mx-4 bg-white rounded-lg shadow-lg p-8'>
         <h1 className='text-3xl text-[#522E2E] mb-5 text-center font-bold'>Login</h1>
         <p className='text-sm text-[#66668B] text-center font-secondary mb-8'>

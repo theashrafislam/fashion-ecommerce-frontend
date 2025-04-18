@@ -4,7 +4,14 @@ const PriceFilter = () => {
     const [priceRange, setPriceRange] = useState({ min: 0, max: 500 });
     
     const handleRangeChange = (e) => {
-        setPriceRange({ ...priceRange, [e.target.name]: parseInt(e.target.value) });
+        const { name, value } = e.target;
+        const newValue = parseInt(value);
+        
+        if (name === 'min' && newValue <= priceRange.max) {
+            setPriceRange({ ...priceRange, min: newValue });
+        } else if (name === 'max' && newValue >= priceRange.min) {
+            setPriceRange({ ...priceRange, max: newValue });
+        }
     };
     
     return (
