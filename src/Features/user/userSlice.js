@@ -6,6 +6,7 @@ import axios from "axios";
 export const fetchUser = createAsyncThunk(
     'user/fetchUser',
     async (email, {extra}) => {
+        // ekhane ektu problem ache ekhane theke shikhar kichu ache, try korte hobe apadoto brack for enjoy
         // const axiosSecure = extra.useAxiosSecure();
         const response = await axios.get(`/api/user-info?email=${email}`);
         return response?.data
